@@ -20,7 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31A679F9E6EA8D3BC7EF3700 /* Pods-MyWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWallet/Pods-MyWallet.release.xcconfig"; sourceTree = "<group>"; };
 		4561B95ADE567609A23F7AB2 /* Pods_MyWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		585AED389AA8A194B3B5C5D6 /* Pods-MyWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWallet/Pods-MyWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		618C3BB220CBA564009E13CB /* MyWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		618C3BB520CBA564009E13CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		618C3BB720CBA564009E13CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,8 +51,8 @@
 		3890B9E2C5A1A20EEC60F6CA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				92827A1E54F8ED7A87FF4E71 /* Pods-MyWallet.debug.xcconfig */,
-				F0BC8D0581DF56C91DCC5DF2 /* Pods-MyWallet.release.xcconfig */,
+				585AED389AA8A194B3B5C5D6 /* Pods-MyWallet.debug.xcconfig */,
+				31A679F9E6EA8D3BC7EF3700 /* Pods-MyWallet.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -76,7 +78,6 @@
 		618C3BB420CBA564009E13CB /* MyWallet */ = {
 			isa = PBXGroup;
 			children = (
-				61CFDB3420CD7747003D5590 /* MyWallet.entitlements */,
 				618C3BB520CBA564009E13CB /* AppDelegate.swift */,
 				618C3BB720CBA564009E13CB /* ViewController.swift */,
 				B59C3BE620CD1D4E00BFCC04 /* Expense.swift */,
@@ -167,7 +168,6 @@
 				618C3BC320CBA566009E13CB /* LaunchScreen.storyboard in Resources */,
 				618C3BC020CBA566009E13CB /* Assets.xcassets in Resources */,
 				618C3BBB20CBA564009E13CB /* Main.storyboard in Resources */,
-				61CFDB3320CD73CC003D5590 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,7 +378,7 @@
 		};
 		618C3BC820CBA566009E13CB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92827A1E54F8ED7A87FF4E71 /* Pods-MyWallet.debug.xcconfig */;
+			baseConfigurationReference = 585AED389AA8A194B3B5C5D6 /* Pods-MyWallet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyWallet/MyWallet.entitlements;
@@ -398,7 +398,7 @@
 		};
 		618C3BC920CBA566009E13CB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F0BC8D0581DF56C91DCC5DF2 /* Pods-MyWallet.release.xcconfig */;
+			baseConfigurationReference = 31A679F9E6EA8D3BC7EF3700 /* Pods-MyWallet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyWallet/MyWallet.entitlements;
