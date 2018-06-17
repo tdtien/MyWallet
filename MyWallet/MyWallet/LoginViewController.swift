@@ -24,12 +24,14 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         btnLoginFB.delegate = self
+        /*
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user != nil {
                 self.isComplete  = true
                 self.performSegue(withIdentifier: "LoginSuccessSegue", sender: self)
             }
         }
+        */
     }
     override func viewWillAppear(_ animated: Bool) {
         isComplete = false
@@ -81,6 +83,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             let alert = UIAlertController(title: "Error!", message: "Please enter your email or password", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
             present(alert, animated: true, completion: nil)
+            return
         }
         Auth.auth().signIn(withEmail: txtfieldEmail.text!, password: txtfieldPassword.text!) { (user, error) in
             if let error = error {
