@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1F1312A6FCE09C44BB12CD67 /* Pods_MyWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4561B95ADE567609A23F7AB2 /* Pods_MyWallet.framework */; };
+		6125D3BE20D63E7900D99293 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125D3BB20D63E7600D99293 /* LoginViewController.swift */; };
+		6125D3BF20D63E7900D99293 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125D3BC20D63E7800D99293 /* ResetPasswordViewController.swift */; };
+		6125D3C020D63E7900D99293 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125D3BD20D63E7900D99293 /* SignUpViewController.swift */; };
 		618C3BB620CBA564009E13CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C3BB520CBA564009E13CB /* AppDelegate.swift */; };
 		618C3BB820CBA564009E13CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C3BB720CBA564009E13CB /* ViewController.swift */; };
 		618C3BBB20CBA564009E13CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 618C3BB920CBA564009E13CB /* Main.storyboard */; };
@@ -23,6 +26,9 @@
 		31A679F9E6EA8D3BC7EF3700 /* Pods-MyWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWallet/Pods-MyWallet.release.xcconfig"; sourceTree = "<group>"; };
 		4561B95ADE567609A23F7AB2 /* Pods_MyWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		585AED389AA8A194B3B5C5D6 /* Pods-MyWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWallet/Pods-MyWallet.debug.xcconfig"; sourceTree = "<group>"; };
+		6125D3BB20D63E7600D99293 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6125D3BC20D63E7800D99293 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		6125D3BD20D63E7900D99293 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		618C3BB220CBA564009E13CB /* MyWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		618C3BB520CBA564009E13CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		618C3BB720CBA564009E13CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +84,9 @@
 		618C3BB420CBA564009E13CB /* MyWallet */ = {
 			isa = PBXGroup;
 			children = (
+				6125D3BB20D63E7600D99293 /* LoginViewController.swift */,
+				6125D3BC20D63E7800D99293 /* ResetPasswordViewController.swift */,
+				6125D3BD20D63E7900D99293 /* SignUpViewController.swift */,
 				618C3BB520CBA564009E13CB /* AppDelegate.swift */,
 				618C3BB720CBA564009E13CB /* ViewController.swift */,
 				B59C3BE620CD1D4E00BFCC04 /* Expense.swift */,
@@ -231,10 +240,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6125D3BE20D63E7900D99293 /* LoginViewController.swift in Sources */,
 				B59C3BE420CD184900BFCC04 /* ExpenseTableViewCell.swift in Sources */,
 				618C3BBE20CBA564009E13CB /* MyWallet.xcdatamodeld in Sources */,
+				6125D3BF20D63E7900D99293 /* ResetPasswordViewController.swift in Sources */,
 				618C3BB820CBA564009E13CB /* ViewController.swift in Sources */,
 				618C3BB620CBA564009E13CB /* AppDelegate.swift in Sources */,
+				6125D3C020D63E7900D99293 /* SignUpViewController.swift in Sources */,
 				B59C3BE920CD246100BFCC04 /* ExpenseTableViewController.swift in Sources */,
 				B59C3BE720CD1D4E00BFCC04 /* Expense.swift in Sources */,
 			);
