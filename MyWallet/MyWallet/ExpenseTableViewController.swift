@@ -10,9 +10,11 @@ import UIKit
 
 class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var tblView: UITableView!
+    //@IBOutlet weak var tblView: UITableView!
     var expenses = [Expense]()
     
+    
+    @IBOutlet weak var tblView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,7 +47,7 @@ class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseTableViewCell", for: indexPath) as? ExpenseTableViewCell else {
-            fatalError("The dequeued cell is not an instance of ExpenseTableViewCellID.")
+            fatalError("The dequeued cell is not an instance of ExpenseTableViewCell.")
         }
         
         let expense = expenses[indexPath.row]
