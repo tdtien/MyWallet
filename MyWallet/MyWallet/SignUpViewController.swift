@@ -41,13 +41,13 @@ class SignUpViewController: UIViewController {
         } else {
             Auth.auth().createUser(withEmail: txtfieldEmail.text!, password: txtfieldPassword.text!) { (user, error) in
                 if (error != nil) {
-                    let alert = UIAlertController(title: "Error!", message: "Email has already used", preferredStyle: UIAlertControllerStyle.alert)
+                    let alert = UIAlertController(title: "Error!", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 } else {
                     Auth.auth().signIn(withEmail: self.txtfieldEmail.text!, password: self.txtfieldPassword.text!, completion: { (user, error) in
-                        if (error != nil) {
-                            let alert = UIAlertController(title: "Error!", message: "Something went wrong", preferredStyle: UIAlertControllerStyle.alert)
+                        if let error = error {
+                            let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                             self.present(alert, animated: true, completion: nil)
                         }
@@ -55,12 +55,15 @@ class SignUpViewController: UIViewController {
                     Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
                         if let error = error {
                             print(error.localizedDescription)
-                            let alert = UIAlertController(title: "Error!", message: "Cannot send verification email", preferredStyle: UIAlertControllerStyle.alert)
+                            let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                             self.present(alert, animated: true, completion: nil)
                         } else {
                             let alert = UIAlertController(title: "Sucessful", message: "Please check your inbox to complete registeration", preferredStyle: UIAlertControllerStyle.actionSheet)
-                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in self.dismiss(animated: true, completion: nil)}))
+                            self.txtfieldEmail.resignFirstResponder()
+                            self.txtfieldPassword.resignFirstResponder()
+                            self.txtfieldConfirmPassword.resignFirstResponder()
                             self.present(alert, animated: true, completion: nil)
                         }
                     })

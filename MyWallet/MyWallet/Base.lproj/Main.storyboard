@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iTn-kI-bdd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A0X-EV-LgY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -37,7 +37,7 @@
                                         <rect key="frame" x="63" y="394" width="249" height="30"/>
                                         <color key="backgroundColor" red="0.29057461020000003" green="0.62197023630000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Đăng nhập"/>
+                                        <state key="normal" title="Sign In"/>
                                         <connections>
                                             <action selector="doLogin:" destination="A0X-EV-LgY" eventType="touchUpInside" id="07r-Yh-IoS"/>
                                         </connections>
@@ -46,15 +46,15 @@
                                         <rect key="frame" x="63" y="432" width="249" height="30"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Đăng ký"/>
+                                        <state key="normal" title="Sign Up"/>
                                         <connections>
                                             <segue destination="oI4-1m-bI1" kind="show" id="Uti-br-p56"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEG-8Z-9Wi">
-                                        <rect key="frame" x="102.5" y="617" width="170" height="30"/>
+                                        <rect key="frame" x="109.5" y="617" width="157" height="30"/>
                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Quên mật khẩu của bạn?"/>
+                                        <state key="normal" title="Forgot your password?"/>
                                         <connections>
                                             <segue destination="u80-pH-7cf" kind="show" id="VmA-tc-iJu"/>
                                         </connections>
@@ -70,6 +70,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="uKs-sg-atO" firstAttribute="top" secondItem="t0Q-el-wNx" secondAttribute="bottom" constant="8" symbolic="YES" id="BU1-WD-D5H"/>
                                     <constraint firstItem="uKs-sg-atO" firstAttribute="trailing" secondItem="1Iz-TL-RKD" secondAttribute="trailing" id="GZQ-Uf-Y0e"/>
@@ -94,6 +95,9 @@
                                     <constraint firstItem="vOO-in-wC0" firstAttribute="top" secondItem="1Iz-TL-RKD" secondAttribute="bottom" constant="8" symbolic="YES" id="zFM-uv-QT6"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="Lv2-kT-bog"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="gRx-7p-TQo" appends="YES" id="WZm-Az-pzq"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -112,6 +116,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3K-Do-3vd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="gRx-7p-TQo">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="A0X-EV-LgY" id="YPv-YK-yuh"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-965.60000000000002" y="113.79310344827587"/>
         </scene>
@@ -126,7 +135,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpv-gs-jgj">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quên mật khẩu?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7b-jc-fS9">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot your password?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7b-jc-fS9">
                                         <rect key="frame" x="69" y="54" width="237" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="29" id="te9-5w-E2N"/>
@@ -163,7 +172,7 @@
                                             <constraint firstAttribute="height" constant="30" id="tKF-1z-HwG"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Khôi phục mật khẩu"/>
+                                        <state key="normal" title="Reset password"/>
                                         <connections>
                                             <action selector="doResetPassword:" destination="u80-pH-7cf" eventType="touchUpInside" id="CE1-UW-M1J"/>
                                         </connections>
@@ -235,8 +244,8 @@
                                             <action selector="doBack:" destination="oI4-1m-bI1" eventType="touchUpInside" id="kEz-Cv-2J8"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tạo tài khoản mới" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P24-K6-ZrO">
-                                        <rect key="frame" x="97" y="52" width="180" height="29"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create new account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P24-K6-ZrO">
+                                        <rect key="frame" x="84" y="52" width="207" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

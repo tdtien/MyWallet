@@ -34,8 +34,7 @@ class ResetPasswordViewController: UIViewController {
         } else {
             Auth.auth().sendPasswordReset(withEmail: txtfieldEmail.text!) { (error) in
                 if let error = error {
-                    print(error.localizedDescription)
-                    let alert = UIAlertController(title: "Error!", message: "Incorrect email", preferredStyle: UIAlertControllerStyle.alert)
+                    let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 } else {
@@ -43,6 +42,7 @@ class ResetPasswordViewController: UIViewController {
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
                         self.dismiss(animated: true, completion: nil)
                     }))
+                    self.txtfieldEmail.resignFirstResponder()
                     self.present(alert, animated: true, completion: nil)
                 }
             }

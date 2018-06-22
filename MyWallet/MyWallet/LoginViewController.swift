@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var txtfieldEmail: UITextField!
     @IBOutlet weak var txtfieldPassword: UITextField!
     @IBOutlet weak var btnLoginFB: FBSDKLoginButton!
+
     var isComplete: Bool = false
     
     override func viewDidLoad() {
@@ -78,6 +79,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
     }
     // MARK: Actions
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        txtfieldEmail.resignFirstResponder()
+        txtfieldPassword.resignFirstResponder()
+    }
+
     @IBAction func doLogin(_ sender: Any) {
         if ((txtfieldEmail.text?.isEmpty)! || (txtfieldPassword.text?.isEmpty)!) {
             let alert = UIAlertController(title: "Error!", message: "Please enter your email or password", preferredStyle: UIAlertControllerStyle.alert)
