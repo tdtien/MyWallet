@@ -50,21 +50,27 @@ class SignUpViewController: UIViewController {
                             let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                             self.present(alert, animated: true, completion: nil)
-                        }
-                    })
-                    Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
-                        if let error = error {
-                            print(error.localizedDescription)
-                            let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
-                            self.present(alert, animated: true, completion: nil)
                         } else {
-                            let alert = UIAlertController(title: "Sucessful", message: "Please check your inbox to complete registeration", preferredStyle: UIAlertControllerStyle.actionSheet)
-                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in self.dismiss(animated: true, completion: nil)}))
-                            self.txtfieldEmail.resignFirstResponder()
-                            self.txtfieldPassword.resignFirstResponder()
-                            self.txtfieldConfirmPassword.resignFirstResponder()
-                            self.present(alert, animated: true, completion: nil)
+                            let ref = Database.database().reference()
+                            if let user = Auth.auth().currentUser {
+                                let newUser = User(email: user.email!, amount: "")
+                                ref.child("users").child(user.uid).setValue(newUser.toAnyObject())
+                            }
+                            Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                    let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+                                    self.present(alert, animated: true, completion: nil)
+                                } else {
+                                    let alert = UIAlertController(title: "Sucessful", message: "Please check your inbox to complete registeration", preferredStyle: UIAlertControllerStyle.actionSheet)
+                                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in self.dismiss(animated: true, completion: nil)}))
+                                    self.txtfieldEmail.resignFirstResponder()
+                                    self.txtfieldPassword.resignFirstResponder()
+                                    self.txtfieldConfirmPassword.resignFirstResponder()
+                                    self.present(alert, animated: true, completion: nil)
+                                }
+                            })
                         }
                     })
                 }

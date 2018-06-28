@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     //@IBOutlet weak var tblView: UITableView!
     var expenses = [Expense]()
+    var user:User?
     
     
     @IBOutlet weak var tblView: UITableView!
@@ -25,6 +27,16 @@ class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITable
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         /*tblView.estimatedRowHeight = 104
         tblView.rowHeight = UITableViewAutomaticDimension*/
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("users").child(userID!).observe(DataEventType.value) { (snapshot) in
+            self.user = User(snapshot: snapshot)
+            if (self.user?.amount.isEmpty)! {
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                let initWalletController = mainStoryboard.instantiateViewController(withIdentifier: "InitialWalletViewController") as! InitialWalletViewController
+                self.present(initWalletController, animated: true, completion: nil)
+            }
+        }
         loadSampleExpense()
     }
 

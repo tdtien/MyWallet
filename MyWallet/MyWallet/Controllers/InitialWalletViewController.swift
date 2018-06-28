@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class InitialWalletViewController: UIViewController, UITextFieldDelegate {
 
@@ -18,7 +19,7 @@ class InitialWalletViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         textFieldAmount.delegate = self
-        amount = ""
+        textFieldAmount.addTarget(self, action: #selector(textFieldChanged), for: UIControlEvents.editingChanged)
         // Do any additional setup after loading the view.
     }
 
@@ -26,33 +27,32 @@ class InitialWalletViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: textField Delegate
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        amount?.append(string)
-        textField.text = formatCurrency(string: amount!)
-        return false
-    }
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        amount?.remove(at: (amount?.endIndex)!)
-        return true
-    }
-    func formatCurrency(string: String) -> String {
-        var count = 0;
-        var res = string
-        for (_, char) in string.enumerated() {
-            count = count + 1
-            if count == 3 {
-                let idx = res.index(after: res.index(of: char)!)
-                res.insert(",", at: idx)
-                count = 0
-            }
-        }
-        return res
-    }
     // MARK: Actions
     @IBAction func dismissKeyboard(_ sender: Any) {
         textFieldAmount.resignFirstResponder()
+    }
+    @IBAction func saveAmount(_ sender: Any) {
+        let ref = Database.database().reference()
+        if let user = Auth.auth().currentUser {
+            let childUpdate = ["/users/\(user.uid)/amount": amount]
+            ref.updateChildValues(childUpdate)
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    // MARK: Text field delegate
+    @objc func textFieldChanged(textField: UITextField) {
+        amount = textField.text?.replacingOccurrences(of: ",", with: "")
+        var str = amount
+        var count = 0
+        for (index, _) in (str?.enumerated().reversed())!  {
+            count = count + 1
+            if count == 4 {
+                let idx = str?.index((str?.startIndex)!, offsetBy: index + 1)
+                str?.insert(",", at: idx!)
+                count = 1
+            }
+        }
+        textField.text = str
     }
     /*
     // MARK: - Navigation

@@ -25,14 +25,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         btnLoginFB.delegate = self
-        /*
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user != nil {
-                self.isComplete  = true
-                self.performSegue(withIdentifier: "LoginSuccessSegue", sender: self)
-            }
-        }
-        */
+
+//        Auth.auth().addStateDidChangeListener { (auth, user) in
+//            if user != nil {
+//                self.isComplete  = true
+//                self.performSegue(withIdentifier: "LoginSuccessSegue", sender: self)
+//            }
+//        }
     }
     override func viewWillAppear(_ animated: Bool) {
         isComplete = false
@@ -66,7 +65,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             // User is signed in
             print("Login successful!")
             self.isComplete = true
-            self.performSegue(withIdentifier: "LoginFBSuccessSegue", sender: self)
+            self.performSegue(withIdentifier: "LoginSuccessSegue", sender: self)
         }
     }
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
@@ -99,13 +98,41 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-            print("Login successful!")
-            self.isComplete = true
+            if let user = Auth.auth().currentUser {
+                if !user.isEmailVerified {
+                    let alert = UIAlertController(title: "Error!", message: "Please verify your email address", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Resend verification email", style: UIAlertActionStyle.default, handler: { (action) in
+                        user.sendEmailVerification(completion: { (error) in
+                            if let error = error {
+                                let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                            } else {
+                                let alert = UIAlertController(title: "Sucessful", message: "Please check your inbox to complete registeration", preferredStyle: UIAlertControllerStyle.actionSheet)
+                                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in self.dismiss(animated: true, completion: nil)}))
+                                self.txtfieldEmail.resignFirstResponder()
+                                self.txtfieldPassword.resignFirstResponder()
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                        })
+                    }))
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    do {
+                        try Auth.auth().signOut()
+                    } catch let signOutError as NSError {
+                        print ("Error signing out: %@", signOutError)
+                    }
+                    print("Sign out successful")
+                    return
+                }
+                self.isComplete = true;
+            }
             self.performSegue(withIdentifier: "LoginSuccessSegue", sender: self)
         }
     }
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "LoginSuccessSegue" || identifier == "LoginFBSuccessSegue" {
+        if identifier == "LoginSuccessSegue" {
             if isComplete {
              return true
             }
