@@ -12,6 +12,7 @@
 		6125D3BF20D63E7900D99293 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125D3BC20D63E7800D99293 /* ResetPasswordViewController.swift */; };
 		6125D3C020D63E7900D99293 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125D3BD20D63E7900D99293 /* SignUpViewController.swift */; };
 		6144D35B20DCE21A00EA90F7 /* InitialWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6144D35A20DCE21A00EA90F7 /* InitialWalletViewController.swift */; };
+		617D37C620E620D700EC1244 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 617D37C520E620D700EC1244 /* GoogleService-Info.plist */; };
 		618C3BB620CBA564009E13CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C3BB520CBA564009E13CB /* AppDelegate.swift */; };
 		618C3BB820CBA564009E13CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C3BB720CBA564009E13CB /* ViewController.swift */; };
 		618C3BBB20CBA564009E13CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 618C3BB920CBA564009E13CB /* Main.storyboard */; };
@@ -28,7 +29,6 @@
 		B59C3BE420CD184900BFCC04 /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C3BE320CD184900BFCC04 /* ExpenseTableViewCell.swift */; };
 		B59C3BE720CD1D4E00BFCC04 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C3BE620CD1D4E00BFCC04 /* Expense.swift */; };
 		B59C3BE920CD246100BFCC04 /* ExpenseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C3BE820CD246100BFCC04 /* ExpenseTableViewController.swift */; };
-		B5F9897520E52F23003DA814 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5F9897420E52F22003DA814 /* GoogleService-Info.plist */; };
 		B5F9897720E53531003DA814 /* AllCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */; };
 		B5F9897920E539E5003DA814 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9897820E539E5003DA814 /* Category.swift */; };
 /* End PBXBuildFile section */
@@ -41,6 +41,7 @@
 		6125D3BC20D63E7800D99293 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		6125D3BD20D63E7900D99293 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6144D35A20DCE21A00EA90F7 /* InitialWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialWalletViewController.swift; sourceTree = "<group>"; };
+		617D37C520E620D700EC1244 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		618C3BB220CBA564009E13CB /* MyWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		618C3BB520CBA564009E13CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		618C3BB720CBA564009E13CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,7 +60,6 @@
 		B59C3BE320CD184900BFCC04 /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
 		B59C3BE620CD1D4E00BFCC04 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		B59C3BE820CD246100BFCC04 /* ExpenseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewController.swift; sourceTree = "<group>"; };
-		B5F9897420E52F22003DA814 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		B5F9897820E539E5003DA814 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,7 +119,7 @@
 				618C3BB920CBA564009E13CB /* Main.storyboard */,
 				618C3BC120CBA566009E13CB /* LaunchScreen.storyboard */,
 				618C3BC420CBA566009E13CB /* Info.plist */,
-				B5F9897420E52F22003DA814 /* GoogleService-Info.plist */,
+				617D37C520E620D700EC1244 /* GoogleService-Info.plist */,
 				618C3BBC20CBA564009E13CB /* MyWallet.xcdatamodeld */,
 			);
 			path = MyWallet;
@@ -232,7 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				618C3BC320CBA566009E13CB /* LaunchScreen.storyboard in Resources */,
-				B5F9897520E52F23003DA814 /* GoogleService-Info.plist in Resources */,
+				617D37C620E620D700EC1244 /* GoogleService-Info.plist in Resources */,
 				618C3BC020CBA566009E13CB /* Assets.xcassets in Resources */,
 				618C3BBB20CBA564009E13CB /* Main.storyboard in Resources */,
 			);

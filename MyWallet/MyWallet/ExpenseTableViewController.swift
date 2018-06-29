@@ -15,8 +15,13 @@ class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITable
     var expenses = [Expense]()
     var user:User?
     
-    
+    // MARK: Properties
     @IBOutlet weak var tblView: UITableView!
+    @IBOutlet weak var lblTienVao: UILabel!
+    @IBOutlet weak var lblTienRa: UILabel!
+    @IBOutlet weak var lblTongTien: UILabel!
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,9 +40,31 @@ class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITable
                 let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 let initWalletController = mainStoryboard.instantiateViewController(withIdentifier: "InitialWalletViewController") as! InitialWalletViewController
                 self.present(initWalletController, animated: true, completion: nil)
+            } else {
+                self.lblTienVao.text = self.formatCurrency(string: (self.user?.amount)!)
             }
         }
         loadSampleExpense()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        if user != nil {
+            lblTienVao.text = formatCurrency(string: (self.user?.amount)!)
+        }
+    }
+
+    func formatCurrency(string: String) -> String {
+        var str = string
+        var count = 0
+        for (index, _) in str.enumerated().reversed() {
+            count = count + 1
+            if count == 4 {
+                let idx = str.index(str.startIndex, offsetBy: index + 1)
+                str.insert(",", at: idx)
+                count = 1
+            }
+        }
+        str = str + " ₫"
+        return str
     }
 
     override func didReceiveMemoryWarning() {

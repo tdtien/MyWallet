@@ -36,7 +36,9 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func btnCancelPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        if let ownNavigationController = navigationController {
+            ownNavigationController.popViewController(animated: true)
+        }
     }
     
     //Mark: TabeView
@@ -65,15 +67,14 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
             return 60
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         categoryChoosen = categories[indexPath.row]
-        self.performSegue(withIdentifier: "ChooseCategory", sender: nil)
+        return indexPath
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let addExpenseViewController = segue.destination as! AddExpenseViewController
-    addExpenseViewController.myCategory = categoryChoosen
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let addExpenseViewController = navigationController?.viewControllers[0] as? AddExpenseViewController
+        addExpenseViewController?.myCategory = categoryChoosen
+        self.navigationController?.popViewController(animated: true)
     }
     
     /*
