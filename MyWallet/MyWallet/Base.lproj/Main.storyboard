@@ -590,7 +590,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <state key="normal" title="Button" image="iconPlus"/>
                                 <connections>
-                                    <segue destination="cEZ-Dm-cTc" kind="show" id="KJg-Nb-7YU"/>
+                                    <segue destination="J54-fN-7vk" kind="show" id="XQe-el-2S1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -605,144 +605,104 @@
             </objects>
             <point key="canvasLocation" x="484" y="116"/>
         </scene>
-        <!--Thêm giao dịch-->
-        <scene sceneID="77g-6d-6M6">
+        <!--Add Expense-->
+        <scene sceneID="Ubu-xD-2VA">
             <objects>
-                <viewController id="o8R-O4-zNR" customClass="AddExpenseViewController" customModule="MyWallet" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="38X-xW-DG3">
+                <viewController id="G2v-IX-JJN" customClass="AddExpenseViewController" customModule="MyWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DVr-CK-3S5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YT6-eN-v7i">
-                                <rect key="frame" x="0.0" y="64" width="375" height="539"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PriceTableViewCellID" rowHeight="94" id="oif-29-Iev" customClass="PriceTableViewCell" customModule="MyWallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="94"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oif-29-Iev" id="75e-AY-xRR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconVND" translatesAutoresizingMaskIntoConstraints="NO" id="WPZ-LZ-vRs">
-                                                    <rect key="frame" x="15" y="20" width="55" height="51"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wVS-ma-Wnb">
-                                                    <rect key="frame" x="96" y="31" width="158" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                                </textField>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <inset key="separatorInset" minX="75" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <connections>
-                                            <outlet property="txtPrice" destination="wVS-ma-Wnb" id="l5P-fj-ENV"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryTableViewCellID" rowHeight="79" id="r6m-TP-40r" customClass="CategoryTableViewCell" customModule="MyWallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="122" width="375" height="79"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r6m-TP-40r" id="qNd-ZZ-82e">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="78.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Chọn nhóm" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vQb-dT-NCh">
-                                                    <rect key="frame" x="95" y="31" width="158" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconQuestion" translatesAutoresizingMaskIntoConstraints="NO" id="kyh-mm-doP">
-                                                    <rect key="frame" x="9" y="11" width="55" height="51"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <inset key="separatorInset" minX="75" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <connections>
-                                            <outlet property="txtCategory" destination="vQb-dT-NCh" id="C12-wS-dZt"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteTableViewCellID" rowHeight="79" id="fQe-06-Vhb" customClass="NoteTableViewCell" customModule="MyWallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="201" width="375" height="79"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fQe-06-Vhb" id="U02-jy-ZCZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="78.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconNote" translatesAutoresizingMaskIntoConstraints="NO" id="vPr-hq-k9D">
-                                                    <rect key="frame" x="15" y="14" width="55" height="51"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ghi chú" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="np7-GR-sgx">
-                                                    <rect key="frame" x="97" y="35" width="158" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <inset key="separatorInset" minX="75" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <connections>
-                                            <outlet property="txtNote" destination="np7-GR-sgx" id="wFA-AU-L91"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CalendarTableViewCellID" rowHeight="79" id="JdU-P0-d3h" customClass="CalendarTableViewCell" customModule="MyWallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="280" width="375" height="79"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JdU-P0-d3h" id="RRt-Na-9Wc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="78.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ngày" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xf8-vP-Mf5">
-                                                    <rect key="frame" x="96" y="35" width="158" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconCalendar" translatesAutoresizingMaskIntoConstraints="NO" id="Uh8-OA-ceL">
-                                                    <rect key="frame" x="15" y="14" width="55" height="51"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <connections>
-                                            <outlet property="txtCalendar" destination="xf8-vP-Mf5" id="Qgr-Ro-afA"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Choose category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xg0-0x-8oi">
+                                <rect key="frame" x="95" y="229" width="186" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="o8R-O4-zNR" id="hkw-a6-bhM"/>
-                                    <outlet property="delegate" destination="o8R-O4-zNR" id="ume-dn-s28"/>
+                                    <segue destination="h1V-Q0-ZHW" kind="show" id="am0-ko-UzJ"/>
                                 </connections>
-                            </tableView>
+                            </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QNE-8g-U0U">
+                                <rect key="frame" x="75" y="206" width="301" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconQuestion" translatesAutoresizingMaskIntoConstraints="NO" id="995-lH-tdi">
+                                <rect key="frame" x="16" y="220" width="55" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconNote" translatesAutoresizingMaskIntoConstraints="NO" id="L9r-MA-FkZ">
+                                <rect key="frame" x="16" y="312" width="55" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Note" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NIj-fL-7v2">
+                                <rect key="frame" x="95" y="321" width="186" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wzH-Pw-L4r">
+                                <rect key="frame" x="75" y="298" width="301" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconVND" translatesAutoresizingMaskIntoConstraints="NO" id="hnR-QA-KdL">
+                                <rect key="frame" x="16" y="129" width="55" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconCalendar" translatesAutoresizingMaskIntoConstraints="NO" id="bsw-Eb-hgq" customClass="iconCalendar">
+                                <rect key="frame" x="16" y="406" width="55" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dtx-S4-dxy">
+                                <rect key="frame" x="95" y="418" width="186" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ked-FZ-MiN">
+                                <rect key="frame" x="75" y="469" width="300" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vhG-7O-L0Q">
+                                <rect key="frame" x="75" y="385" width="301" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CAl-ol-pDx">
+                                <rect key="frame" x="95" y="133" width="186" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="jEr-Un-fxR"/>
+                        <viewLayoutGuide key="safeArea" id="0hr-xY-L8n"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Thêm giao dịch" id="qjv-Fh-SIw">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hSc-qo-YFF">
+                    <navigationItem key="navigationItem" title="Add Expense" id="nqv-3e-C6e">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="YX7-kD-5Wc">
                             <connections>
-                                <action selector="btnCancelPressed:" destination="o8R-O4-zNR" id="kJh-Zi-ANm"/>
+                                <action selector="btnCancelPressed:" destination="G2v-IX-JJN" id="l4a-JQ-Dt6"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="gGU-x8-KUM"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="qEQ-KT-BM1"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="tblDetailExpense" destination="YT6-eN-v7i" id="weM-Gm-d43"/>
+                        <outlet property="imgCategory" destination="995-lH-tdi" id="0gR-Bd-FOG"/>
+                        <outlet property="txtCategory" destination="xg0-0x-8oi" id="MMX-ST-ctR"/>
+                        <outlet property="txtDate" destination="Dtx-S4-dxy" id="Epa-Vs-OF2"/>
+                        <outlet property="txtNote" destination="NIj-fL-7v2" id="vCU-BD-f6f"/>
+                        <outlet property="txtPrice" destination="CAl-ol-pDx" id="ciM-Vw-qno"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pfh-7h-58L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j57-rg-4Tu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2559.1999999999998" y="117.39130434782609"/>
+            <point key="canvasLocation" x="2421.5999999999999" y="121.88905547226388"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="pyg-ne-yii">
@@ -799,9 +759,6 @@
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                             <textInputTraits key="textInputTraits"/>
-                                                            <connections>
-                                                                <segue destination="Esy-oS-Vzq" kind="show" id="bqJ-Qu-Er5"/>
-                                                            </connections>
                                                         </textField>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconQuestion" translatesAutoresizingMaskIntoConstraints="NO" id="zAY-U8-WTa">
                                                             <rect key="frame" x="9" y="11" width="55" height="51"/>
@@ -865,10 +822,6 @@
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="o8R-O4-zNR" id="0zo-sB-Msb"/>
-                                            <outlet property="delegate" destination="o8R-O4-zNR" id="1Xq-fd-nXS"/>
-                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -881,7 +834,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WZA-J5-cIj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3550" y="54"/>
+            <point key="canvasLocation" x="5118" y="45"/>
         </scene>
         <!--Category View Controller-->
         <scene sceneID="oaM-KH-1uU">
@@ -896,7 +849,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="67" id="c0j-z5-kq6">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AllCategoryViewControllerID" rowHeight="67" id="c0j-z5-kq6" customClass="AllCategoryTableViewCell" customModule="MyWallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c0j-z5-kq6" id="U8V-FX-OJW">
@@ -916,6 +869,11 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imgCategory" destination="wD3-CW-VHL" id="ci0-V9-p7t"/>
+                                            <outlet property="txtCategory" destination="ubo-M6-zDt" id="rsd-4u-JBm"/>
+                                            <segue destination="G2v-IX-JJN" kind="show" identifier="ChooseCategory" id="eNt-fp-uY8"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -931,7 +889,7 @@
                                     <segment title="Thu nhập"/>
                                 </segments>
                                 <connections>
-                                    <action selector="segmentTapped:" destination="S8t-jT-EXn" eventType="valueChanged" id="CWu-5O-dwv"/>
+                                    <action selector="segmentTapped:" destination="h1V-Q0-ZHW" eventType="valueChanged" id="VZX-pr-yr8"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
@@ -944,49 +902,30 @@
                                 <action selector="btnCancelPressed:" destination="h1V-Q0-ZHW" id="HYR-iL-gtr"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Chọn" id="0lb-Ne-5H6"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="0lb-Ne-5H6"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ls-8U-WIw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="S8t-jT-EXn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5284" y="42.728635682158924"/>
+            <point key="canvasLocation" x="3620" y="83"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="rXp-H3-Gb1">
+        <scene sceneID="EbQ-bd-ylo">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cEZ-Dm-cTc" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J54-fN-7vk" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="neu-Ia-EVY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FIB-pv-b1l">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="o8R-O4-zNR" kind="relationship" relationship="rootViewController" id="RhY-Ne-xta"/>
+                        <segue destination="G2v-IX-JJN" kind="relationship" relationship="rootViewController" id="EqJ-Hx-u0f"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="15h-YF-gAy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uLd-im-gbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1857" y="117"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="uwV-Qw-Q8U">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Esy-oS-Vzq" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="02t-DR-RgA">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="h1V-Q0-ZHW" kind="relationship" relationship="rootViewController" id="4H2-xU-idQ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Woa-mR-toe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4344.8000000000002" y="42.728635682158924"/>
+            <point key="canvasLocation" x="1482.4000000000001" y="121.88905547226388"/>
         </scene>
     </scenes>
     <resources>
@@ -1002,4 +941,8 @@
         <image name="iconVND" width="512" height="512"/>
         <image name="iconWallet" width="512" height="512"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="am0-ko-UzJ"/>
+        <segue reference="eNt-fp-uY8"/>
+    </inferredMetricsTieBreakers>
 </document>

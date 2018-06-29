@@ -18,7 +18,6 @@
 		618C3BBE20CBA564009E13CB /* MyWallet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 618C3BBC20CBA564009E13CB /* MyWallet.xcdatamodeld */; };
 		618C3BC020CBA566009E13CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 618C3BBF20CBA566009E13CB /* Assets.xcassets */; };
 		618C3BC320CBA566009E13CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 618C3BC120CBA566009E13CB /* LaunchScreen.storyboard */; };
-		6195640920DCD485002C6625 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6195640820DCD485002C6625 /* GoogleService-Info.plist */; };
 		61B3ACB920E4E34900D0BF48 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B3ACB820E4E34900D0BF48 /* User.swift */; };
 		B5137DEB20D6AA4B007D5B5C /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5137DEA20D6AA4B007D5B5C /* AddExpenseViewController.swift */; };
 		B5137DEE20D6AAB0007D5B5C /* PriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5137DED20D6AAB0007D5B5C /* PriceTableViewCell.swift */; };
@@ -29,6 +28,9 @@
 		B59C3BE420CD184900BFCC04 /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C3BE320CD184900BFCC04 /* ExpenseTableViewCell.swift */; };
 		B59C3BE720CD1D4E00BFCC04 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C3BE620CD1D4E00BFCC04 /* Expense.swift */; };
 		B59C3BE920CD246100BFCC04 /* ExpenseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C3BE820CD246100BFCC04 /* ExpenseTableViewController.swift */; };
+		B5F9897520E52F23003DA814 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5F9897420E52F22003DA814 /* GoogleService-Info.plist */; };
+		B5F9897720E53531003DA814 /* AllCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */; };
+		B5F9897920E539E5003DA814 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9897820E539E5003DA814 /* Category.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +49,6 @@
 		618C3BBF20CBA566009E13CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		618C3BC220CBA566009E13CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		618C3BC420CBA566009E13CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6195640820DCD485002C6625 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		61B3ACB820E4E34900D0BF48 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B5137DEA20D6AA4B007D5B5C /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		B5137DED20D6AAB0007D5B5C /* PriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTableViewCell.swift; sourceTree = "<group>"; };
@@ -58,6 +59,9 @@
 		B59C3BE320CD184900BFCC04 /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
 		B59C3BE620CD1D4E00BFCC04 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		B59C3BE820CD246100BFCC04 /* ExpenseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewController.swift; sourceTree = "<group>"; };
+		B5F9897420E52F22003DA814 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		B5F9897820E539E5003DA814 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +119,7 @@
 				618C3BB920CBA564009E13CB /* Main.storyboard */,
 				618C3BC120CBA566009E13CB /* LaunchScreen.storyboard */,
 				618C3BC420CBA566009E13CB /* Info.plist */,
-				6195640820DCD485002C6625 /* GoogleService-Info.plist */,
+				B5F9897420E52F22003DA814 /* GoogleService-Info.plist */,
 				618C3BBC20CBA564009E13CB /* MyWallet.xcdatamodeld */,
 			);
 			path = MyWallet;
@@ -126,6 +130,7 @@
 			children = (
 				B59C3BE620CD1D4E00BFCC04 /* Expense.swift */,
 				61B3ACB820E4E34900D0BF48 /* User.swift */,
+				B5F9897820E539E5003DA814 /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 				B5137DEF20D6AADB007D5B5C /* CategoryTableViewCell.swift */,
 				B5137DF120D6AAE8007D5B5C /* NoteTableViewCell.swift */,
 				B5137DF320D6AAFA007D5B5C /* CalendarTableViewCell.swift */,
+				B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */,
 			);
 			path = CellInAddExpense;
 			sourceTree = "<group>";
@@ -226,7 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				618C3BC320CBA566009E13CB /* LaunchScreen.storyboard in Resources */,
-				6195640920DCD485002C6625 /* GoogleService-Info.plist in Resources */,
+				B5F9897520E52F23003DA814 /* GoogleService-Info.plist in Resources */,
 				618C3BC020CBA566009E13CB /* Assets.xcassets in Resources */,
 				618C3BBB20CBA564009E13CB /* Main.storyboard in Resources */,
 			);
@@ -294,6 +300,7 @@
 			files = (
 				6125D3BE20D63E7900D99293 /* LoginViewController.swift in Sources */,
 				B5137DF220D6AAE8007D5B5C /* NoteTableViewCell.swift in Sources */,
+				B5F9897920E539E5003DA814 /* Category.swift in Sources */,
 				B59C3BE420CD184900BFCC04 /* ExpenseTableViewCell.swift in Sources */,
 				B5137DF420D6AAFA007D5B5C /* CalendarTableViewCell.swift in Sources */,
 				B5137DEE20D6AAB0007D5B5C /* PriceTableViewCell.swift in Sources */,
@@ -309,6 +316,7 @@
 				B59C3BE920CD246100BFCC04 /* ExpenseTableViewController.swift in Sources */,
 				B59C3BE720CD1D4E00BFCC04 /* Expense.swift in Sources */,
 				B5137DF020D6AADB007D5B5C /* CategoryTableViewCell.swift in Sources */,
+				B5F9897720E53531003DA814 /* AllCategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
