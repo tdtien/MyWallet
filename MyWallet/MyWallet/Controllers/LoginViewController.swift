@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var txtfieldEmail: UITextField!
     @IBOutlet weak var txtfieldPassword: UITextField!
     @IBOutlet weak var btnLoginFB: FBSDKLoginButton!
+    @IBOutlet weak var activityControl: UIActivityIndicatorView!
 
     var isComplete: Bool = false
     
@@ -54,6 +55,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             return
         }
         let credential = FacebookAuthProvider.credential(withAccessToken: token.tokenString)
+        activityControl.startAnimating()
         Auth.auth().signIn(with: credential) { (user, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -63,7 +65,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 return
             }
             // User is signed in
-            print("Login successful!")
+            self.activityControl.stopAnimating()
             self.isComplete = true
             self.performSegue(withIdentifier: "LoginSuccessSegue", sender: self)
         }
@@ -79,8 +81,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     // MARK: Actions
     @IBAction func dismissKeyboard(_ sender: Any) {
-        txtfieldEmail.resignFirstResponder()
-        txtfieldPassword.resignFirstResponder()
+        view.endEditing(true)
     }
 
     @IBAction func doLogin(_ sender: Any) {
@@ -90,9 +91,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             present(alert, animated: true, completion: nil)
             return
         }
+        activityControl.startAnimating()
         Auth.auth().signIn(withEmail: txtfieldEmail.text!, password: txtfieldPassword.text!) { (user, error) in
             if let error = error {
-                print(error.localizedDescription)
+                self.activityControl.stopAnimating()
                 let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
@@ -100,6 +102,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
             if let user = Auth.auth().currentUser {
                 if !user.isEmailVerified {
+                    self.activityControl.stopAnimating()
                     let alert = UIAlertController(title: "Error!", message: "Please verify your email address", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Resend verification email", style: UIAlertActionStyle.default, handler: { (action) in
                         user.sendEmailVerification(completion: { (error) in
@@ -108,6 +111,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                                 self.present(alert, animated: true, completion: nil)
                             } else {
+                                self.activityControl.stopAnimating()
                                 let alert = UIAlertController(title: "Sucessful", message: "Please check your inbox to complete registeration", preferredStyle: UIAlertControllerStyle.actionSheet)
                                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in self.dismiss(animated: true, completion: nil)}))
                                 self.txtfieldEmail.resignFirstResponder()

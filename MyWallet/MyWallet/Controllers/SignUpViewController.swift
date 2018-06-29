@@ -15,7 +15,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var txtfieldEmail: UITextField!
     @IBOutlet weak var txtfieldPassword: UITextField!
     @IBOutlet weak var txtfieldConfirmPassword: UITextField!
-    
+    @IBOutlet weak var activityControl: UIActivityIndicatorView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,23 +31,28 @@ class SignUpViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func doRegister(_ sender: Any) {
+        activityControl.startAnimating()
         if ((txtfieldPassword.text?.isEmpty)! || (txtfieldConfirmPassword.text?.isEmpty)! || (txtfieldEmail.text?.isEmpty)!) {
+            activityControl.stopAnimating()
             let alert = UIAlertController(title: "Error!", message: "Please enter your information", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else if (txtfieldConfirmPassword.text != txtfieldPassword.text) {
+            activityControl.stopAnimating()
             let alert = UIAlertController(title: "Error!", message: "Incorrect confirm password", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
             Auth.auth().createUser(withEmail: txtfieldEmail.text!, password: txtfieldPassword.text!) { (user, error) in
                 if (error != nil) {
+                    self.activityControl.stopAnimating()
                     let alert = UIAlertController(title: "Error!", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 } else {
                     Auth.auth().signIn(withEmail: self.txtfieldEmail.text!, password: self.txtfieldPassword.text!, completion: { (user, error) in
                         if let error = error {
+                            self.activityControl.stopAnimating()
                             let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                             self.present(alert, animated: true, completion: nil)
@@ -58,11 +64,13 @@ class SignUpViewController: UIViewController {
                             }
                             Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
                                 if let error = error {
+                                    self.activityControl.stopAnimating()
                                     print(error.localizedDescription)
                                     let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                                     self.present(alert, animated: true, completion: nil)
                                 } else {
+                                self.activityControl.stopAnimating()
                                     let alert = UIAlertController(title: "Sucessful", message: "Please check your inbox to complete registeration", preferredStyle: UIAlertControllerStyle.actionSheet)
                                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in self.dismiss(animated: true, completion: nil)}))
                                     self.txtfieldEmail.resignFirstResponder()
