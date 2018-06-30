@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class TransactionTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -26,7 +27,6 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -40,17 +40,32 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             self.user = User(snapshot: snapshot)
             if (self.user?.amount.isEmpty)! {
                 self.performSegue(withIdentifier: "InitialWalletViewSegue", sender: self)
-            } else {
-                self.lblTienVao.text = self.formatCurrency(string: (self.user?.amount)!)
             }
+        }
+        // Load data
+        if let savedTransactions = loadTransactions() {
+            transactions += savedTransactions
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-        if user != nil {
-            lblTienVao.text = formatCurrency(string: (self.user?.amount)!)
-        }
+        updateGeneral()
     }
     // MARKS: Private methods
+    private func updateGeneral() {
+        var tienVao = 0
+        var tienRa = 0
+        for item in transactions {
+            if item.type == 0 {
+                tienRa += Int(item.price) ?? 0
+            } else {
+                tienVao += Int(item.price) ?? 0
+            }
+        }
+        let tongTien = tienVao - tienRa
+        lblTienVao.text = formatCurrency(string: "\(tienVao)")
+        lblTienRa.text = formatCurrency(string: "\(tienRa)")
+        lblTongTien.text = formatCurrency(string: "\(tongTien)")
+    }
     private func formatCurrency(string: String) -> String {
         var str = string
         var count = 0
@@ -65,6 +80,73 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         str = str + " ₫"
         return str
     }
+    private func saveTransaction(transaction: Transaction) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let transactionEntity = NSEntityDescription.entity(forEntityName: "TransactionEntity", in: context)
+        let newTransaction = NSManagedObject(entity: transactionEntity!, insertInto: context)
+        newTransaction.setValue(transaction.type, forKey: "type")
+        newTransaction.setValue(transaction.price, forKey: "price")
+        newTransaction.setValue(transaction.category, forKey: "category")
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        let date = formatter.date(from: transaction.date)
+        newTransaction.setValue(date, forKey: "date")
+        newTransaction.setValue(transaction.note, forKey: "note")
+        let imageData = NSData(data: UIImageJPEGRepresentation(transaction.photo!, 1.0)!)
+        newTransaction.setValue(imageData, forKey: "photo")
+        do {
+            try context.save()
+        } catch {
+            print("Failed saving...")
+        }
+    }
+    private func deleteTransaction(idx: Int) {
+        var list = [TransactionEntity]()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let transactionFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "TransactionEntity")
+        do {
+            list = try context.fetch(transactionFetch) as! [TransactionEntity]
+        } catch {
+            print("Fetching failed")
+        }
+        context.delete(list[idx] as NSManagedObject)
+        do {
+            try context.save()
+            transactions.remove(at: idx)
+        } catch {
+            print("Failed deleting")
+        }
+    }
+    private func deleteAll() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let transactionFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "TransactionEntity")
+        let deletereq = NSBatchDeleteRequest(fetchRequest: transactionFetch)
+        do {
+            try context.execute(deletereq)
+        } catch {
+            print("Failed deleting all")
+        }
+    }
+    private func loadTransactions() -> [Transaction]? {
+        var list = [TransactionEntity]()
+        var listTransaction = [Transaction]()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let transactionFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "TransactionEntity")
+        do {
+            list = try context.fetch(transactionFetch) as! [TransactionEntity]
+        } catch {
+            print("Fetching failed")
+        }
+        for item in list {
+            let date = item.date!
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd/MM/yyyy"
+            let dateString = formatter.string(from: date)
+            let transaction = Transaction(photo: UIImage(data: item.photo!, scale: 1.0), category: item.category!, type: Int(item.type), price: item.price!, note: item.note!, date: dateString)
+            listTransaction.append(transaction!)
+        }
+        return listTransaction
+    }
     // MARK: Actions
     @IBAction func unwindtoTransactionTableViewController(segue:UIStoryboardSegue) {
         if let sourceViewController = segue.source as? AddTransactionViewController, let transaction = sourceViewController.myTransaction {
@@ -72,12 +154,14 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
                 //Update existing transaction
                 transactions[selectedIndexPath.row] = transaction
                 tblView.reloadRows(at: [selectedIndexPath], with: .none)
-                //Xu ly coredata o day
+                deleteAll()
+                for item in transactions {
+                    saveTransaction(transaction: item)
+                }
             } else {
                 //Add a new transaction
                 let newIndexPath = IndexPath(row: transactions.count, section: 0)
-                //saveTransaction core data
-
+                saveTransaction(transaction: transaction)
                 transactions.append(transaction)
                 tblView.insertRows(at: [newIndexPath], with: .automatic)
             }
@@ -136,66 +220,39 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
-        return true
+        return false
     }
     
     //function support editting table view
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            transactions.remove(at: indexPath.row)
-            //delete in db
+            deleteTransaction(idx: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            updateGeneral()
         }
     }
-    
+    /*
     //function support rearranging the table view
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let todo = transactions.remove(at: sourceIndexPath.row)
         transactions.insert(todo, at: destinationIndexPath.row)
         //Update in db
     }
+     */
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath.row <= transactions.count) {
-             return 104
-        }
-        else {
-            return 60
-        }
+        return 104
     }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navigation = segue.destination as! UINavigationController
         let addTransactionViewController = navigation.topViewController as! AddTransactionViewController
-        if (isBtnAddPressed)
-        {
+        if (isBtnAddPressed) {
             addTransactionViewController.myTransaction = nil
-        }
-        else
-        {
+        } else {
              addTransactionViewController.myTransaction = transactionChoosen
         }
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
 
     /*
     // Override to support rearranging the table view.
