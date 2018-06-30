@@ -17,6 +17,8 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     var transactionChoosen:Transaction?
     var user:User?
     var isBtnAddPressed:Bool = false
+    var date:Date?
+    var type:Int?
     
     // MARK: Properties
     @IBOutlet weak var tblView: UITableView!

@@ -11,5 +11,6 @@ target 'MyWallet' do
 	pod 'Firebase/Auth'
 	pod 'Firebase/Database'
 	pod 'Firebase/Storage'
-	pod 'Charts' 
+	pod 'Charts'
+	pod 'Parchment'
 end
