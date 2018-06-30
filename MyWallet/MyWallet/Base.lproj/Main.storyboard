@@ -458,10 +458,10 @@
             </objects>
             <point key="canvasLocation" x="313" y="793"/>
         </scene>
-        <!--Expense Table View Controller-->
+        <!--Transaction Table View Controller-->
         <scene sceneID="m7X-C0-4Sg">
             <objects>
-                <viewController id="iTn-kI-bdd" customClass="ExpenseTableViewController" customModule="MyWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iTn-kI-bdd" customClass="TransactionTableViewController" customModule="MyWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="611-Oo-Kdw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -558,7 +558,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExpenseTableViewCell" rowHeight="104" id="bWf-Up-z6J" customClass="ExpenseTableViewCell" customModule="MyWallet" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransactionTableViewCell" rowHeight="104" id="bWf-Up-z6J" customClass="TransactionTableViewCell" customModule="MyWallet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="104"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bWf-Up-z6J" id="cEx-KK-2cA">
@@ -611,7 +611,7 @@
                                 <state key="normal" title="Button" image="iconPlus"/>
                                 <connections>
                                     <action selector="btnAddPressed:" destination="iTn-kI-bdd" eventType="touchUpInside" id="EGP-Cu-eZA"/>
-                                    <segue destination="J54-fN-7vk" kind="presentation" identifier="ShowOrAddExpense" id="XQe-el-2S1"/>
+                                    <segue destination="J54-fN-7vk" kind="presentation" identifier="ShowOrAddTransaction" id="XQe-el-2S1"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tổng quan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3T-qq-EY0">
@@ -637,73 +637,73 @@
             </objects>
             <point key="canvasLocation" x="484" y="116"/>
         </scene>
-        <!--Add Expense-->
+        <!--Add Transaction-->
         <scene sceneID="Ubu-xD-2VA">
             <objects>
-                <viewController restorationIdentifier="AddExpenseViewController" storyboardIdentifier="AddExpenseViewController" id="G2v-IX-JJN" customClass="AddExpenseViewController" customModule="MyWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="AddTransactionViewController" storyboardIdentifier="AddTransactionViewController" id="G2v-IX-JJN" customClass="AddTransactionViewController" customModule="MyWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DVr-CK-3S5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Choose category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xg0-0x-8oi">
-                                <rect key="frame" x="95" y="229" width="186" height="46"/>
+                                <rect key="frame" x="94" y="186" width="186" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QNE-8g-U0U">
-                                <rect key="frame" x="75" y="206" width="301" height="1"/>
+                                <rect key="frame" x="75" y="156" width="301" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconQuestion" translatesAutoresizingMaskIntoConstraints="NO" id="995-lH-tdi">
-                                <rect key="frame" x="16" y="220" width="55" height="55"/>
+                                <rect key="frame" x="16" y="177" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconNote" translatesAutoresizingMaskIntoConstraints="NO" id="L9r-MA-FkZ">
-                                <rect key="frame" x="16" y="312" width="55" height="55"/>
+                                <rect key="frame" x="16" y="254" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Note" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NIj-fL-7v2">
-                                <rect key="frame" x="95" y="321" width="186" height="46"/>
+                                <rect key="frame" x="95" y="263" width="186" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wzH-Pw-L4r">
-                                <rect key="frame" x="75" y="298" width="301" height="1"/>
+                                <rect key="frame" x="75" y="240" width="301" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconVND" translatesAutoresizingMaskIntoConstraints="NO" id="hnR-QA-KdL">
-                                <rect key="frame" x="16" y="129" width="55" height="55"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconVND" translatesAutoresizingMaskIntoConstraints="NO" id="hnR-QA-KdL">
+                                <rect key="frame" x="16" y="86" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconCalendar" translatesAutoresizingMaskIntoConstraints="NO" id="bsw-Eb-hgq" customClass="iconCalendar">
-                                <rect key="frame" x="16" y="406" width="55" height="55"/>
+                                <rect key="frame" x="16" y="348" width="55" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dtx-S4-dxy">
-                                <rect key="frame" x="95" y="418" width="186" height="30"/>
+                                <rect key="frame" x="95" y="360" width="186" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ked-FZ-MiN">
-                                <rect key="frame" x="75" y="469" width="300" height="1"/>
+                                <rect key="frame" x="75" y="411" width="300" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vhG-7O-L0Q">
-                                <rect key="frame" x="75" y="385" width="301" height="1"/>
+                                <rect key="frame" x="75" y="327" width="301" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CAl-ol-pDx">
-                                <rect key="frame" x="95" y="133" width="186" height="46"/>
+                                <rect key="frame" x="94" y="95" width="186" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
@@ -717,7 +717,7 @@
                             <outletCollection property="gestureRecognizers" destination="YLd-XH-Ldb" appends="YES" id="K40-wE-hmQ"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Expense" id="nqv-3e-C6e">
+                    <navigationItem key="navigationItem" title="Add Transaction" id="nqv-3e-C6e">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="YX7-kD-5Wc">
                             <connections>
                                 <action selector="btnCancelPressed:" destination="G2v-IX-JJN" id="l4a-JQ-Dt6"/>
@@ -976,7 +976,7 @@
         <image name="iconNote" width="400" height="400"/>
         <image name="iconPlus" width="128" height="128"/>
         <image name="iconQuestion" width="128" height="128"/>
-        <image name="iconVND" width="512" height="512"/>
+        <image name="iconVND" width="256" height="256"/>
         <image name="iconWallet" width="512" height="512"/>
     </resources>
 </document>

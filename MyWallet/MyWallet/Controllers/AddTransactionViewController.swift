@@ -1,5 +1,5 @@
 //
-//  AddExpenseViewController.swift
+//  AddTransactionViewController.swift
 //  MyWallet
 //
 //  Created by Tien Huynh on 6/17/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddExpenseViewController: UIViewController, UITextFieldDelegate{
+class AddTransactionViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var txtPrice: UITextField!
     @IBOutlet weak var txtCategory: UITextField!
@@ -20,7 +20,7 @@ class AddExpenseViewController: UIViewController, UITextFieldDelegate{
     var amount:String?
     var strDate:String?
     let datePicker = UIDatePicker()
-    var myExpense:Expense? = nil
+    var myTransaction:Transaction? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +32,13 @@ class AddExpenseViewController: UIViewController, UITextFieldDelegate{
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-        if (myExpense != nil)
+        if (myTransaction != nil)
         {
-            txtPrice.text = myExpense?.price
-            imgCategory.image = myExpense?.photo
-            txtCategory.text = myExpense?.transaction
-            txtNote.text = myExpense?.note
-            txtDate.text = myExpense?.date
+            txtPrice.text = myTransaction?.price
+            imgCategory.image = myTransaction?.photo
+            txtCategory.text = myTransaction?.nameTransaction
+            txtNote.text = myTransaction?.note
+            txtDate.text = myTransaction?.date
         }
         if (myCategory != nil)
         {

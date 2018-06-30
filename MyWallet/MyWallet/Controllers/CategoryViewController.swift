@@ -72,8 +72,8 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         return indexPath
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let addExpenseViewController = navigationController?.viewControllers[0] as? AddExpenseViewController
-        addExpenseViewController?.myCategory = categoryChoosen
+        let addTransactionViewController = navigationController?.viewControllers[0] as? AddTransactionViewController
+        addTransactionViewController?.myCategory = categoryChoosen
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -92,12 +92,14 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         let photo1 = UIImage(named: "IconAnUong")
         let photo2 = UIImage(named: "IconDiChuyen")
         
-        guard let category1 = Category(photo: photo1, nameCategory: "Ăn uống")
+        
+        
+        guard let category1 = Category(photo: photo1, nameCategory: "Ăn uống", type: 0)
             else {
                 fatalError("Unable to instantiate category1")
         }
         
-        guard let category2 = Category(photo: photo2, nameCategory: "Di chuyển")
+        guard let category2 = Category(photo: photo2, nameCategory: "Di chuyển", type: 1)
             else {
                 fatalError("Unable to instantiate category2")
         }

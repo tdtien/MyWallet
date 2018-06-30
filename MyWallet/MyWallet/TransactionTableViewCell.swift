@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExpenseTableViewCell: UITableViewCell {
+class TransactionTableViewCell: UITableViewCell {
 
    
     @IBOutlet weak var categoryImage: UIImageView!

@@ -8,22 +8,22 @@
 
 import UIKit
 
-class Expense: NSObject {
+class Transaction: NSObject {
     //MARK: Properties
     var photo: UIImage?
     var category: String
-    var transaction: String
+    var nameTransaction: String
     var price: String
     var note: String
     var date:String
     
-    init?(photo: UIImage?, category: String, transaction: String, price: String, note:String, date: String) {
+    init?(photo: UIImage?, category: String, nameTransaction: String, price: String, note:String, date: String) {
         guard !category.isEmpty else {
             return nil
         }
         self.photo = photo
         self.category = category
-        self.transaction = transaction
+        self.nameTransaction = nameTransaction
         self.price = price
         self.note = note
         self.date = date

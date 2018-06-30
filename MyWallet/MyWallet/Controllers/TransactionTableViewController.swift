@@ -9,11 +9,11 @@
 import UIKit
 import Firebase
 
-class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TransactionTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     //@IBOutlet weak var tblView: UITableView!
-    var expenses = [Expense]()
-    var expenseChoosen:Expense?
+    var transactions = [Transaction]()
+    var transactionChoosen:Transaction?
     var user:User?
     var isBtnAddPressed:Bool = false
     
@@ -44,7 +44,7 @@ class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITable
                 self.lblTienVao.text = self.formatCurrency(string: (self.user?.amount)!)
             }
         }
-        loadSampleExpense()
+        loadSampleTransaction()
     }
     override func viewWillAppear(_ animated: Bool) {
         if user != nil {
@@ -75,7 +75,7 @@ class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func btnAddPressed(_ sender: UIButton) {
         isBtnAddPressed = true
-        performSegue(withIdentifier: "ShowOrAddExpense", sender: self)
+        performSegue(withIdentifier: "ShowOrAddTransaction", sender: self)
     }
     
     // MARK: - Table view data source
@@ -85,31 +85,31 @@ class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expenses.count
+        return transactions.count
     }
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseTableViewCell", for: indexPath) as? ExpenseTableViewCell else {
-            fatalError("The dequeued cell is not an instance of ExpenseTableViewCell.")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTableViewCell", for: indexPath) as? TransactionTableViewCell else {
+            fatalError("The dequeued cell is not an instance of TransactionTableViewCell.")
         }
         
-        let expense = expenses[indexPath.row]
+        let transaction = transactions[indexPath.row]
         
-        cell.categoryImage.image = expense.photo
-        cell.categoryNameLbl.text = expense.category
-        cell.transactionNameLbl.text = expense.transaction
-        cell.priceLbl.text = expense.price
+        cell.categoryImage.image = transaction.photo
+        cell.categoryNameLbl.text = transaction.category
+        cell.transactionNameLbl.text = transaction.nameTransaction
+        cell.priceLbl.text = transaction.price
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let expense = expenses[indexPath.row]
-        expenseChoosen = expense
+        let transaction = transactions[indexPath.row]
+        transactionChoosen = transaction
         isBtnAddPressed = false
-        performSegue(withIdentifier: "ShowOrAddExpense", sender: self)
+        performSegue(withIdentifier: "ShowOrAddTransaction", sender: self)
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -120,7 +120,7 @@ class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITable
     //function support editting table view
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            expenses.remove(at: indexPath.row)
+            transactions.remove(at: indexPath.row)
             //delete in db
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -128,13 +128,13 @@ class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITable
     
     //function support rearranging the table view
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let todo = expenses.remove(at: sourceIndexPath.row)
-        expenses.insert(todo, at: destinationIndexPath.row)
+        let todo = transactions.remove(at: sourceIndexPath.row)
+        transactions.insert(todo, at: destinationIndexPath.row)
         //Update in db
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath.row <= expenses.count) {
+        if (indexPath.row <= transactions.count) {
              return 104
         }
         else {
@@ -144,14 +144,14 @@ class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITable
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navigation = segue.destination as! UINavigationController
-        let addExpenseViewController = navigation.topViewController as! AddExpenseViewController
+        let addTransactionViewController = navigation.topViewController as! AddTransactionViewController
         if (isBtnAddPressed)
         {
-            addExpenseViewController.myExpense = nil
+            addTransactionViewController.myTransaction = nil
         }
         else
         {
-             addExpenseViewController.myExpense = expenseChoosen
+             addTransactionViewController.myTransaction = transactionChoosen
         }
     }
     
@@ -201,21 +201,21 @@ class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITable
     */
 
     
-    private func loadSampleExpense()
+    private func loadSampleTransaction()
     {
         let photo1 = UIImage(named: "IconAnUong")
         let photo2 = UIImage(named: "IconDiChuyen")
         
-        guard let expense1 = Expense(photo: photo1, category: "Ăn uống", transaction: "Bún bò", price: "20.000",note: "Delicious", date: "29/06/2018")
+        guard let transaction1 = Transaction(photo: photo1, category: "Ăn uống", nameTransaction: "Bún bò", price: "20.000",note: "Delicious", date: "29/06/2018")
             else {
                 fatalError("Unable to instantiate expense1")
         }
         
-        guard let expense2 = Expense(photo: photo2, category: "Di chuyển", transaction: "Đổ xăng", price: "50.000",note: "OK", date: "29/06/2018")
+        guard let transaction2 = Transaction(photo: photo2, category: "Di chuyển", nameTransaction: "Đổ xăng", price: "50.000",note: "OK", date: "29/06/2018")
             else {
                 fatalError("Unable to instantiate expense2")
         }
         
-        expenses+=[expense1,expense2]
+        transactions+=[transaction1,transaction2]
     }
 }
