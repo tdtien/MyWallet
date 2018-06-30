@@ -44,15 +44,14 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
                 self.lblTienVao.text = self.formatCurrency(string: (self.user?.amount)!)
             }
         }
-        loadSampleTransaction()
     }
     override func viewWillAppear(_ animated: Bool) {
         if user != nil {
             lblTienVao.text = formatCurrency(string: (self.user?.amount)!)
         }
     }
-
-    func formatCurrency(string: String) -> String {
+    // MARKS: Private methods
+    private func formatCurrency(string: String) -> String {
         var str = string
         var count = 0
         for (index, _) in str.enumerated().reversed() {
@@ -65,6 +64,24 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         }
         str = str + " ₫"
         return str
+    }
+    // MARK: Actions
+    @IBAction func unwindtoTransactionTableViewController(segue:UIStoryboardSegue) {
+        if let sourceViewController = segue.source as? AddTransactionViewController, let transaction = sourceViewController.myTransaction {
+            if let selectedIndexPath = tblView.indexPathForSelectedRow {
+                //Update existing transaction
+                transactions[selectedIndexPath.row] = transaction
+                tblView.reloadRows(at: [selectedIndexPath], with: .none)
+                //Xu ly coredata o day
+            } else {
+                //Add a new transaction
+                let newIndexPath = IndexPath(row: transactions.count, section: 0)
+                //saveTransaction core data
+
+                transactions.append(transaction)
+                tblView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,9 +116,14 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         
         cell.categoryImage.image = transaction.photo
         cell.categoryNameLbl.text = transaction.category
-        cell.transactionNameLbl.text = transaction.nameTransaction
-        cell.priceLbl.text = transaction.price
-        
+        cell.transactionNameLbl.text = transaction.note
+        if transaction.type == 0 {
+            cell.priceLbl.text = "-\(formatCurrency(string: transaction.price))"
+            cell.priceLbl.textColor = UIColor.red
+        } else {
+            cell.priceLbl.text = "+\(formatCurrency(string: transaction.price))"
+            cell.priceLbl.textColor = UIColor.blue
+        }
         return cell
     }
     
@@ -141,7 +163,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             return 60
         }
     }
-    
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navigation = segue.destination as! UINavigationController
         let addTransactionViewController = navigation.topViewController as! AddTransactionViewController
@@ -191,16 +213,6 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     */
 
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    
     private func loadSampleTransaction()
     {
         let photo1 = UIImage(named: "IconAnUong")
@@ -218,4 +230,5 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         
         transactions+=[transaction1,transaction2]
     }
+    */
 }

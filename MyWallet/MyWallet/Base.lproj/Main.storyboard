@@ -611,7 +611,6 @@
                                 <state key="normal" title="Button" image="iconPlus"/>
                                 <connections>
                                     <action selector="btnAddPressed:" destination="iTn-kI-bdd" eventType="touchUpInside" id="EGP-Cu-eZA"/>
-                                    <segue destination="J54-fN-7vk" kind="presentation" identifier="ShowOrAddTransaction" id="XQe-el-2S1"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tổng quan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3T-qq-EY0">
@@ -631,6 +630,7 @@
                         <outlet property="lblTongTien" destination="VSV-9u-XRM" id="RpF-wl-aDL"/>
                         <outlet property="tblView" destination="WCA-Wz-al7" id="N0Q-XG-yDt"/>
                         <segue destination="xDV-GX-nN8" kind="show" identifier="InitialWalletViewSegue" id="lM7-b1-sfR"/>
+                        <segue destination="J54-fN-7vk" kind="presentation" identifier="ShowOrAddTransaction" id="g7C-Fs-W7u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xdh-FL-7Pa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -707,7 +707,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -723,10 +723,15 @@
                                 <action selector="btnCancelPressed:" destination="G2v-IX-JJN" id="l4a-JQ-Dt6"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="qEQ-KT-BM1"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="qEQ-KT-BM1">
+                            <connections>
+                                <segue destination="SyK-iY-bP1" kind="unwind" unwindAction="unwindtoTransactionTableViewControllerWithSegue:" id="Ugn-eR-UDN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="imgCategory" destination="995-lH-tdi" id="0gR-Bd-FOG"/>
+                        <outlet property="saveButton" destination="qEQ-KT-BM1" id="ohc-Le-91D"/>
                         <outlet property="txtCategory" destination="xg0-0x-8oi" id="MMX-ST-ctR"/>
                         <outlet property="txtDate" destination="Dtx-S4-dxy" id="Epa-Vs-OF2"/>
                         <outlet property="txtNote" destination="NIj-fL-7v2" id="vCU-BD-f6f"/>
@@ -735,6 +740,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j57-rg-4Tu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="SyK-iY-bP1" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="YLd-XH-Ldb">
                     <connections>
                         <action selector="hideKeyboard:" destination="G2v-IX-JJN" id="N0x-Ht-1Y7"/>

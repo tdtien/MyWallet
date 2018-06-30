@@ -27,12 +27,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         btnLoginFB.delegate = self
 
-//        Auth.auth().addStateDidChangeListener { (auth, user) in
-//            if user != nil {
-//                self.isComplete  = true
-//                self.performSegue(withIdentifier: "LoginSuccessSegue", sender: self)
-//            }
-//        }
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                self.isComplete  = true
+                self.performSegue(withIdentifier: "LoginSuccessSegue", sender: self)
+            }
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         isComplete = false
