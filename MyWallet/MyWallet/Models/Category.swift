@@ -11,7 +11,7 @@ import UIKit
 class Category: NSObject {
     var photo: UIImage?
     var nameCategory: String
-    var type: Int
+    var type: Int   //0: Expense, 1: Income
     
     init?(photo: UIImage?, nameCategory: String, type: Int) {
         guard !nameCategory.isEmpty else {
