@@ -583,7 +583,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <state key="normal" title="Button" image="iconPlus"/>
                                 <connections>
-                                    <segue destination="J54-fN-7vk" kind="presentation" id="XQe-el-2S1"/>
+                                    <action selector="btnAddPressed:" destination="iTn-kI-bdd" eventType="touchUpInside" id="EGP-Cu-eZA"/>
+                                    <segue destination="J54-fN-7vk" kind="presentation" identifier="ShowOrAddExpense" id="XQe-el-2S1"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tổng quan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3T-qq-EY0">
@@ -711,7 +712,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2421.5999999999999" y="121.88905547226388"/>
+            <point key="canvasLocation" x="2134" y="116"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="pyg-ne-yii">
@@ -915,7 +916,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ls-8U-WIw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3620" y="83"/>
+            <point key="canvasLocation" x="3332" y="116"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EbQ-bd-ylo">
@@ -933,7 +934,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uLd-im-gbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1482.4000000000001" y="121.88905547226388"/>
+            <point key="canvasLocation" x="1276" y="485"/>
         </scene>
     </scenes>
     <resources>
