@@ -8,27 +8,26 @@
 
 import UIKit
 
-class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     var segment = 0;
     var categories = [Category]()
     var categoryChoosen:Category? = nil
     var categoriesWithSegment = [Category]()
+    /*var searchController = UISearchController(searchResultsController: nil)*/
+    @IBOutlet weak var searhBar: UISearchBar!
+    var currentCategories = [Category]()
     @IBOutlet weak var segmentOulet: UISegmentedControl!
     @IBOutlet weak var tblView: UITableView!
     
     @IBAction func segmentTapped(_ sender: Any) {
-        /*if (segment == 0) {
-            segment = 1
-        }
-        else {
-            segment = 0
-        }*/
         segment = segmentOulet.selectedSegmentIndex
         categoriesWithSegment.removeAll()
+        currentCategories.removeAll()
         for aCategory in categories {
             if aCategory.type == segment {
                 categoriesWithSegment.append(aCategory)
+                currentCategories.append(aCategory)
             }
         }
         tblView.reloadData()
@@ -38,10 +37,18 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        //Init and set search bar
+        /*searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tblView.tableHeaderView = searchController.searchBar*/
+        searhBar.delegate = self
+        
         loadCategory()
         for aCategory in categories {
             if aCategory.type == segment {
                 categoriesWithSegment.append(aCategory)
+                currentCategories.append(aCategory)
             }
         }
     }
@@ -59,14 +66,15 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     //Mark: TabeView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (segment == 0)
+        /*if (segment == 0)
         {
             return 16
         }
         else
         {
             return 6
-        }
+        }*/
+        return currentCategories.count
         //return categories.count
     }
     
@@ -74,7 +82,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AllCategoryViewControllerID", for: indexPath) as? AllCategoryTableViewCell else {
             fatalError("The dequeued cell is not an instance of AllCategoryViewControllerID.")
         }
-        let category = categoriesWithSegment[indexPath.row]
+        let category = currentCategories[indexPath.row]
         
         cell.imgCategory.image = category.photo
         cell.txtCategory.text = category.nameCategory
@@ -90,13 +98,41 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        categoryChoosen = categoriesWithSegment[indexPath.row]
+        categoryChoosen = currentCategories[indexPath.row]
         return indexPath
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let addTransactionViewController = navigationController?.viewControllers[0] as? AddTransactionViewController
         addTransactionViewController?.myCategory = categoryChoosen
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    //Mark: Search bar
+    /*func updateSearchResults(for searchController: UISearchController) {
+        if searchController.searchBar.text == "" {
+            searchedCategories = categoriesWithSegment
+        } else {
+            searchedCategories = categoriesWithSegment.filter({ $0.nameCategory.lowercased().contains(searchController.searchBar.text?.lowercased()) })
+            /*/searchedCategories = categoriesWithSegment.filter({(categoriesWithSegment :String) -> Bool in
+                if categoriesWithSegment.contains(searchController.searchBar.text!) {
+                    return true
+                } else {
+                    return false
+                }
+            })*/
+        }
+        tblView.reloadData()
+    }*/
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            currentCategories = categoriesWithSegment
+            tblView.reloadData()
+            return
+        }
+        currentCategories = categoriesWithSegment.filter( { aCategory -> Bool in
+            aCategory.nameCategory.lowercased().contains(searchText.lowercased())
+        })
+        tblView.reloadData()
     }
     
     /*
