@@ -19,8 +19,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var txtfieldPassword: UITextField!
     @IBOutlet weak var btnLoginFB: FBSDKLoginButton!
     @IBOutlet weak var activityControl: UIActivityIndicatorView!
-
-    var isComplete: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +27,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user != nil {
-                self.isComplete  = true
                 self.performSegue(withIdentifier: "LoginSuccessSegue", sender: self)
             }
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-        isComplete = false
         if FBSDKAccessToken.current() != nil {
             FBSDKLoginManager().logOut()
         }
@@ -66,7 +62,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
             // User is signed in
             self.activityControl.stopAnimating()
-            self.isComplete = true
             self.performSegue(withIdentifier: "LoginSuccessSegue", sender: self)
         }
     }
@@ -130,19 +125,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                     print("Sign out successful")
                     return
                 }
-                self.isComplete = true;
             }
             self.performSegue(withIdentifier: "LoginSuccessSegue", sender: self)
         }
-    }
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "LoginSuccessSegue" {
-            if isComplete {
-             return true
-            }
-            return false
-        }
-        return true
     }
     @IBAction func unwindtoLoginViewController(segue:UIStoryboardSegue) {
         //Do nothing

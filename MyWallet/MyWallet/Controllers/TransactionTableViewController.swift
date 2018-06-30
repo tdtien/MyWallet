@@ -64,7 +64,11 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         let tongTien = tienVao - tienRa
         lblTienVao.text = formatCurrency(string: "\(tienVao)")
         lblTienRa.text = formatCurrency(string: "\(tienRa)")
-        lblTongTien.text = formatCurrency(string: "\(tongTien)")
+        if tongTien >= 0 {
+            lblTongTien.text = formatCurrency(string: "\(abs(tongTien))")
+        } else {
+            lblTongTien.text = "-\(formatCurrency(string: "\(abs(tongTien))"))"
+        }
     }
     private func formatCurrency(string: String) -> String {
         var str = string

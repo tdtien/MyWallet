@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ypp-0F-LUK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A0X-EV-LgY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -45,7 +45,6 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="doLogin:" destination="A0X-EV-LgY" eventType="touchUpInside" id="07r-Yh-IoS"/>
-                                            <segue destination="iTn-kI-bdd" kind="presentation" identifier="LoginSuccessSegue" id="GNa-Zr-obC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOO-in-wC0">
@@ -143,6 +142,7 @@
                         <outlet property="btnLoginFB" destination="2Cb-Is-ZRo" id="bii-Du-FY1"/>
                         <outlet property="txtfieldEmail" destination="t0Q-el-wNx" id="8LD-kW-7BL"/>
                         <outlet property="txtfieldPassword" destination="uKs-sg-atO" id="OBg-OP-cUS"/>
+                        <segue destination="iTn-kI-bdd" kind="presentation" identifier="LoginSuccessSegue" id="3el-6k-lSK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3K-Do-3vd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -441,7 +441,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-535" y="572"/>
+            <point key="canvasLocation" x="484" y="892"/>
         </scene>
         <!--Chart View Controller-->
         <scene sceneID="tin-hR-9x8">
@@ -496,7 +496,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CVT-iX-UAk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="312.80000000000001" y="918.89055472263874"/>
+            <point key="canvasLocation" x="-767" y="1039"/>
         </scene>
         <!--Transaction Table View Controller-->
         <scene sceneID="m7X-C0-4Sg">
