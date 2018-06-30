@@ -25,6 +25,7 @@
 		B59C3BE420CD184900BFCC04 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C3BE320CD184900BFCC04 /* TransactionTableViewCell.swift */; };
 		B59C3BE720CD1D4E00BFCC04 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C3BE620CD1D4E00BFCC04 /* Transaction.swift */; };
 		B59C3BE920CD246100BFCC04 /* TransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C3BE820CD246100BFCC04 /* TransactionTableViewController.swift */; };
+		B5F9203920E76BE2009E07AC /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9203820E76BE2009E07AC /* ChartViewController.swift */; };
 		B5F9897720E53531003DA814 /* AllCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */; };
 		B5F9897920E539E5003DA814 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9897820E539E5003DA814 /* Category.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		B59C3BE320CD184900BFCC04 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		B59C3BE620CD1D4E00BFCC04 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		B59C3BE820CD246100BFCC04 /* TransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewController.swift; sourceTree = "<group>"; };
+		B5F9203820E76BE2009E07AC /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		B5F9897820E539E5003DA814 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,6 +136,7 @@
 				B5137DEA20D6AA4B007D5B5C /* AddTransactionViewController.swift */,
 				B5771F5420DC0E6D009A9605 /* CategoryViewController.swift */,
 				B59C3BE820CD246100BFCC04 /* TransactionTableViewController.swift */,
+				B5F9203820E76BE2009E07AC /* ChartViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				B59C3BE420CD184900BFCC04 /* TransactionTableViewCell.swift in Sources */,
 				618C3BBE20CBA564009E13CB /* MyWallet.xcdatamodeld in Sources */,
 				6125D3BF20D63E7900D99293 /* ResetPasswordViewController.swift in Sources */,
+				B5F9203920E76BE2009E07AC /* ChartViewController.swift in Sources */,
 				61B3ACB920E4E34900D0BF48 /* User.swift in Sources */,
 				618C3BB820CBA564009E13CB /* ViewController.swift in Sources */,
 				618C3BB620CBA564009E13CB /* AppDelegate.swift in Sources */,
