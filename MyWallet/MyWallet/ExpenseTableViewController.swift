@@ -39,9 +39,7 @@ class ExpenseTableViewController: UIViewController, UITableViewDelegate, UITable
         ref.child("users").child(userID!).observe(DataEventType.value) { (snapshot) in
             self.user = User(snapshot: snapshot)
             if (self.user?.amount.isEmpty)! {
-                let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                let initWalletController = mainStoryboard.instantiateViewController(withIdentifier: "InitialWalletViewController") as! InitialWalletViewController
-                self.present(initWalletController, animated: true, completion: nil)
+                self.performSegue(withIdentifier: "InitialWalletViewSegue", sender: self)
             } else {
                 self.lblTienVao.text = self.formatCurrency(string: (self.user?.amount)!)
             }

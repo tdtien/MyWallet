@@ -52,9 +52,7 @@ class AddExpenseViewController: UIViewController, UITextFieldDelegate{
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField === txtCategory {
             txtCategory.resignFirstResponder()
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let categoryViewController = mainStoryboard.instantiateViewController(withIdentifier: "CategoryViewController") as! CategoryViewController
-            self.navigationController?.pushViewController(categoryViewController, animated: true)
+            performSegue(withIdentifier: "ChooseCategorySegue", sender: self)
         }
         return true
     }

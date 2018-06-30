@@ -89,6 +89,9 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="v6e-nI-X55">
+                                        <rect key="frame" x="178" y="290" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -100,6 +103,7 @@
                                     <constraint firstItem="uKs-sg-atO" firstAttribute="leading" secondItem="1Iz-TL-RKD" secondAttribute="leading" id="HuR-au-kpq"/>
                                     <constraint firstItem="t0Q-el-wNx" firstAttribute="trailing" secondItem="uKs-sg-atO" secondAttribute="trailing" id="KJ6-nv-gPN"/>
                                     <constraint firstItem="TZe-e9-Yy0" firstAttribute="leading" secondItem="Lv2-kT-bog" secondAttribute="leading" constant="67" id="NyP-Y2-fpF"/>
+                                    <constraint firstItem="t0Q-el-wNx" firstAttribute="top" secondItem="v6e-nI-X55" secondAttribute="bottom" constant="8" symbolic="YES" id="U75-sC-Dga"/>
                                     <constraint firstItem="vOO-in-wC0" firstAttribute="trailing" secondItem="2Cb-Is-ZRo" secondAttribute="trailing" id="acz-Cn-JvF"/>
                                     <constraint firstItem="1Iz-TL-RKD" firstAttribute="leading" secondItem="vOO-in-wC0" secondAttribute="leading" id="bsc-Uy-SPZ"/>
                                     <constraint firstItem="Lv2-kT-bog" firstAttribute="bottom" secondItem="hEG-8Z-9Wi" secondAttribute="bottom" constant="20" id="d8j-el-mhg"/>
@@ -111,6 +115,7 @@
                                     <constraint firstItem="t0Q-el-wNx" firstAttribute="centerY" secondItem="Nl7-NS-umz" secondAttribute="centerY" id="hGr-8j-ffQ"/>
                                     <constraint firstItem="t0Q-el-wNx" firstAttribute="leading" secondItem="Lv2-kT-bog" secondAttribute="leading" constant="63" id="iZH-dA-Ito"/>
                                     <constraint firstItem="t0Q-el-wNx" firstAttribute="top" secondItem="TZe-e9-Yy0" secondAttribute="bottom" constant="110" id="jWO-Vk-DjD"/>
+                                    <constraint firstItem="v6e-nI-X55" firstAttribute="centerX" secondItem="t0Q-el-wNx" secondAttribute="centerX" id="jZa-4j-pPQ"/>
                                     <constraint firstItem="TZe-e9-Yy0" firstAttribute="centerX" secondItem="t0Q-el-wNx" secondAttribute="centerX" id="jbV-of-QNU"/>
                                     <constraint firstItem="XVM-I1-WGA" firstAttribute="centerX" secondItem="t0Q-el-wNx" secondAttribute="centerX" id="noK-gJ-QsA"/>
                                     <constraint firstItem="TZe-e9-Yy0" firstAttribute="centerX" secondItem="Nl7-NS-umz" secondAttribute="centerX" id="oHK-kc-jHe"/>
@@ -134,6 +139,7 @@
                         <viewLayoutGuide key="safeArea" id="Uae-mQ-Sy6"/>
                     </view>
                     <connections>
+                        <outlet property="activityControl" destination="v6e-nI-X55" id="BMc-z4-hin"/>
                         <outlet property="btnLoginFB" destination="2Cb-Is-ZRo" id="bii-Du-FY1"/>
                         <outlet property="txtfieldEmail" destination="t0Q-el-wNx" id="8LD-kW-7BL"/>
                         <outlet property="txtfieldPassword" destination="uKs-sg-atO" id="OBg-OP-cUS"/>
@@ -317,9 +323,13 @@
                                             <action selector="doRegister:" destination="oI4-1m-bI1" eventType="touchUpInside" id="Hcf-NG-Djg"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-iI-0FX">
+                                        <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="e9O-iI-0FX" firstAttribute="centerY" secondItem="NeT-Sf-ldG" secondAttribute="centerY" id="1yh-We-aeh"/>
                                     <constraint firstItem="P24-K6-ZrO" firstAttribute="centerX" secondItem="NeT-Sf-ldG" secondAttribute="centerX" id="4gj-RD-D8g"/>
                                     <constraint firstItem="8Wf-BW-Oph" firstAttribute="top" secondItem="Q0u-dk-UOe" secondAttribute="bottom" constant="8" symbolic="YES" id="6XR-x6-6MM"/>
                                     <constraint firstItem="8Ca-a2-iRn" firstAttribute="top" secondItem="P24-K6-ZrO" secondAttribute="bottom" constant="8" symbolic="YES" id="Elb-TL-Czd"/>
@@ -329,6 +339,7 @@
                                     <constraint firstItem="Q0u-dk-UOe" firstAttribute="top" secondItem="gLK-Qs-lsf" secondAttribute="bottom" constant="8" symbolic="YES" id="MvO-af-uCR"/>
                                     <constraint firstItem="8Ca-a2-iRn" firstAttribute="centerX" secondItem="Xkz-lu-WCl" secondAttribute="centerX" id="TaF-EF-lc9"/>
                                     <constraint firstItem="Q0u-dk-UOe" firstAttribute="leading" secondItem="8Wf-BW-Oph" secondAttribute="leading" id="U2f-RT-CIy"/>
+                                    <constraint firstItem="e9O-iI-0FX" firstAttribute="centerX" secondItem="gLK-Qs-lsf" secondAttribute="centerX" id="X4S-rC-WoV"/>
                                     <constraint firstItem="P24-K6-ZrO" firstAttribute="top" secondItem="oqg-eM-d3x" secondAttribute="top" constant="32" id="Yub-Qm-QZs"/>
                                     <constraint firstItem="09A-aX-rLY" firstAttribute="leading" secondItem="oqg-eM-d3x" secondAttribute="leading" constant="16" id="aTY-cq-DoV"/>
                                     <constraint firstItem="8Ca-a2-iRn" firstAttribute="centerX" secondItem="P24-K6-ZrO" secondAttribute="centerX" id="bAz-mN-9dy"/>
@@ -353,6 +364,7 @@
                         <viewLayoutGuide key="safeArea" id="NCt-F4-YRh"/>
                     </view>
                     <connections>
+                        <outlet property="activityControl" destination="e9O-iI-0FX" id="hDO-v6-SpF"/>
                         <outlet property="txtfieldConfirmPassword" destination="Q0u-dk-UOe" id="TQh-wK-nlb"/>
                         <outlet property="txtfieldEmail" destination="Xkz-lu-WCl" id="n63-fX-EjU"/>
                         <outlet property="txtfieldPassword" destination="gLK-Qs-lsf" id="96w-ah-rKY"/>
@@ -430,6 +442,21 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-535" y="572"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tin-hR-9x8">
+            <objects>
+                <viewController id="Ypp-0F-LUK" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qSo-3P-6rv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Q0r-bc-Hgx"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CVT-iX-UAk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="313" y="793"/>
         </scene>
         <!--Expense Table View Controller-->
         <scene sceneID="m7X-C0-4Sg">
@@ -603,6 +630,7 @@
                         <outlet property="lblTienVao" destination="Etf-CS-ZAS" id="Yda-Vp-pCf"/>
                         <outlet property="lblTongTien" destination="VSV-9u-XRM" id="RpF-wl-aDL"/>
                         <outlet property="tblView" destination="WCA-Wz-al7" id="N0Q-XG-yDt"/>
+                        <segue destination="xDV-GX-nN8" kind="show" identifier="InitialWalletViewSegue" id="lM7-b1-sfR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xdh-FL-7Pa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -703,6 +731,7 @@
                         <outlet property="txtDate" destination="Dtx-S4-dxy" id="Epa-Vs-OF2"/>
                         <outlet property="txtNote" destination="NIj-fL-7v2" id="vCU-BD-f6f"/>
                         <outlet property="txtPrice" destination="CAl-ol-pDx" id="ciM-Vw-qno"/>
+                        <segue destination="h1V-Q0-ZHW" kind="show" identifier="ChooseCategorySegue" id="fnw-Dc-KBf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j57-rg-4Tu" userLabel="First Responder" sceneMemberID="firstResponder"/>
