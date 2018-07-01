@@ -37,6 +37,7 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate{
     override func viewWillAppear(_ animated: Bool) {
         if (myTransaction != nil)
         {
+            title = "Edit Transaction"
             txtPrice.text = formatCurrency(string: (myTransaction?.price)!)
             imgCategory.image = myTransaction?.photo
             txtCategory.text = myTransaction?.category

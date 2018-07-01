@@ -109,8 +109,6 @@
 				618C3BBF20CBA566009E13CB /* Assets.xcassets */,
 				618C3BB520CBA564009E13CB /* AppDelegate.swift */,
 				618C3BB720CBA564009E13CB /* ViewController.swift */,
-				B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */,
-				B59C3BE320CD184900BFCC04 /* TransactionTableViewCell.swift */,
 				61660B8F20E7E01B00FA0B21 /* UIView+constraints.swift */,
 				618C3BB920CBA564009E13CB /* Main.storyboard */,
 				618C3BC120CBA566009E13CB /* LaunchScreen.storyboard */,
@@ -124,9 +122,11 @@
 		61B3ACB720E4E31500D0BF48 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */,
 				B59C3BE620CD1D4E00BFCC04 /* Transaction.swift */,
 				61B3ACB820E4E34900D0BF48 /* User.swift */,
 				B5F9897820E539E5003DA814 /* Category.swift */,
+				B59C3BE320CD184900BFCC04 /* TransactionTableViewCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -239,6 +239,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-MyWallet/Pods-MyWallet-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
@@ -251,6 +252,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",

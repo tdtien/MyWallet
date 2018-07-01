@@ -13,4 +13,5 @@ target 'MyWallet' do
 	pod 'Firebase/Storage'
 	pod 'Charts'
 	pod 'Parchment'
+	pod 'DropDown'
 end

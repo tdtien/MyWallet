@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import Firebase
 import CoreData
+import Firebase
 
 class TransactionTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -38,6 +38,14 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         /*tblView.estimatedRowHeight = 104
         tblView.rowHeight = UITableViewAutomaticDimension*/
         // Load data
+
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        if  !(userID?.isEmpty)! {
+                ref.child("users").child(userID!).observe(.value) { (snapshot) in
+                self.user = User(snapshot: snapshot)
+            }
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         transactions.removeAll()
@@ -61,6 +69,9 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             }
             if type == 1 {
                 flag = (dateItem?.isInSameMonth(date: date!))!
+            }
+            if type == 2 {
+                flag = (dateItem?.isInSameYear(date: date!))!
             }
             if flag {
                 transactionsDate.append(item)
@@ -172,7 +183,23 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         if let sourceViewController = segue.source as? AddTransactionViewController, let transaction = sourceViewController.myTransaction {
             if let selectedIndexPath = tblView.indexPathForSelectedRow {
                 //Update existing transaction
+                var currentAmount = Int((user?.amount)!)!
+                if transactionsDate[selectedIndexPath.row].type == 0 {
+                    currentAmount = currentAmount + Int(transactionsDate[selectedIndexPath.row].price)!
+                } else {
+                    currentAmount = currentAmount - Int(transactionsDate[selectedIndexPath.row].price)!
+                }
                 transactions[transactions.index(of: transactionsDate[selectedIndexPath.row])!] = transaction
+                if transaction.type == 0 {
+                    currentAmount = currentAmount - Int(transaction.price)!
+                } else {
+                    currentAmount = currentAmount + Int(transaction.price)!
+                }
+                let ref = Database.database().reference()
+                if let curUser = Auth.auth().currentUser {
+                    let childUpdate = ["/users/\(curUser.uid)/amount": String(currentAmount)]
+                    ref.updateChildValues(childUpdate)
+                }
                 //tblView.reloadRows(at: [selectedIndexPath], with: .none)
                 deleteAll()
                 for item in transactions {
@@ -182,6 +209,17 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             } else {
                 //Add a new transaction
                 //let newIndexPath = IndexPath(row: transactions.count, section: 0)
+                var currentAmount = Int((user?.amount)!)!
+                if transaction.type == 0 {
+                    currentAmount = currentAmount - Int(transaction.price)!
+                } else {
+                    currentAmount = currentAmount + Int(transaction.price)!
+                }
+                let ref = Database.database().reference()
+                if let curUser = Auth.auth().currentUser {
+                    let childUpdate = ["/users/\(curUser.uid)/amount": String(currentAmount)]
+                    ref.updateChildValues(childUpdate)
+                }
                 saveTransaction(transaction: transaction)
                 transactions.append(transaction)
                 //tblView.insertRows(at: [newIndexPath], with: .automatic)
@@ -248,8 +286,18 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     //function support editting table view
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            deleteTransaction(idx: indexPath.row)
-            //tableView.deleteRows(at: [indexPath], with: .fade)
+            var currentAmount = Int((user?.amount)!)!
+            if transactionsDate[indexPath.row].type == 0 {
+                currentAmount = currentAmount + Int(transactionsDate[indexPath.row].price)!
+            } else {
+                currentAmount = currentAmount - Int(transactionsDate[indexPath.row].price)!
+            }
+            let ref = Database.database().reference()
+            if let curUser = Auth.auth().currentUser {
+                let childUpdate = ["/users/\(curUser.uid)/amount": String(currentAmount)]
+                ref.updateChildValues(childUpdate)
+            }
+            deleteTransaction(idx: transactions.index(of: transactionsDate[indexPath.row])!)
             viewWillAppear(true)
         }
     }
@@ -272,7 +320,8 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         if (isBtnAddPressed) {
             addTransactionViewController.myTransaction = nil
         } else {
-             addTransactionViewController.myTransaction = transactionChoosen
+            addTransactionViewController.myTransaction = transactionChoosen
+            addTransactionViewController.myCategory = Category(photo: transactionChoosen?.photo, nameCategory: (transactionChoosen?.category)!, type: (transactionChoosen?.type)!)
         }
     }
 
