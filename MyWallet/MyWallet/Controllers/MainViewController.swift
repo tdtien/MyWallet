@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         var date = Date()
-        type = 1
+        type = 0
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var viewControllers:[UIViewController] = []
         var idx = 0
@@ -38,6 +38,7 @@ class MainViewController: UIViewController {
                 }
                 let transactionTableViewController = storyboard.instantiateViewController(withIdentifier: "TransactionTableViewController") as? TransactionTableViewController
                 transactionTableViewController?.date = date
+                transactionTableViewController?.type = type
                 transactionTableViewController?.title = dateFormatter.string(from: date)
                 viewControllers.append(transactionTableViewController!)
             }
@@ -56,6 +57,7 @@ class MainViewController: UIViewController {
                 }
                 let transactionTableViewController = storyboard.instantiateViewController(withIdentifier: "TransactionTableViewController") as? TransactionTableViewController
                 transactionTableViewController?.date = date
+                transactionTableViewController?.type = type
                 transactionTableViewController?.title = dateFormatter.string(from: date)
                 viewControllers.append(transactionTableViewController!)
             }

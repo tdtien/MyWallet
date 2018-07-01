@@ -14,6 +14,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
 
     //@IBOutlet weak var tblView: UITableView!
     var transactions = [Transaction]()
+    var transactionsDate = [Transaction]()
     var transactionChoosen:Transaction?
     var user:User?
     var isBtnAddPressed:Bool = false
@@ -36,27 +37,40 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         /*tblView.estimatedRowHeight = 104
         tblView.rowHeight = UITableViewAutomaticDimension*/
-        let ref = Database.database().reference()
-        let userID = Auth.auth().currentUser?.uid
-        ref.child("users").child(userID!).observe(DataEventType.value) { (snapshot) in
-            self.user = User(snapshot: snapshot)
-            if (self.user?.amount.isEmpty)! {
-                self.performSegue(withIdentifier: "InitialWalletViewSegue", sender: self)
-            }
-        }
         // Load data
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        transactions.removeAll()
         if let savedTransactions = loadTransactions() {
             transactions += savedTransactions
         }
-    }
-    override func viewWillAppear(_ animated: Bool) {
+        filterByDate()
         updateGeneral()
+        tblView.reloadData()
     }
     // MARKS: Private methods
+    private func filterByDate() {
+        transactionsDate.removeAll()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        for item in transactions {
+            let dateItem = dateFormatter.date(from: item.date)
+            var flag = false
+            if type == 0 {
+                flag = (dateItem?.isInSameDay(date: date!))!
+            }
+            if type == 1 {
+                flag = (dateItem?.isInSameMonth(date: date!))!
+            }
+            if flag {
+                transactionsDate.append(item)
+            }
+        }
+    }
     private func updateGeneral() {
         var tienVao = 0
         var tienRa = 0
-        for item in transactions {
+        for item in transactionsDate {
             if item.type == 0 {
                 tienRa += Int(item.price) ?? 0
             } else {
@@ -158,18 +172,20 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         if let sourceViewController = segue.source as? AddTransactionViewController, let transaction = sourceViewController.myTransaction {
             if let selectedIndexPath = tblView.indexPathForSelectedRow {
                 //Update existing transaction
-                transactions[selectedIndexPath.row] = transaction
-                tblView.reloadRows(at: [selectedIndexPath], with: .none)
+                transactions[transactions.index(of: transactionsDate[selectedIndexPath.row])!] = transaction
+                //tblView.reloadRows(at: [selectedIndexPath], with: .none)
                 deleteAll()
                 for item in transactions {
                     saveTransaction(transaction: item)
                 }
+                viewWillAppear(true)
             } else {
                 //Add a new transaction
-                let newIndexPath = IndexPath(row: transactions.count, section: 0)
+                //let newIndexPath = IndexPath(row: transactions.count, section: 0)
                 saveTransaction(transaction: transaction)
                 transactions.append(transaction)
-                tblView.insertRows(at: [newIndexPath], with: .automatic)
+                //tblView.insertRows(at: [newIndexPath], with: .automatic)
+                viewWillAppear(true)
             }
         }
     }
@@ -192,7 +208,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactions.count
+        return transactionsDate.count
     }
 
     
@@ -202,7 +218,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             fatalError("The dequeued cell is not an instance of TransactionTableViewCell.")
         }
         
-        let transaction = transactions[indexPath.row]
+        let transaction = transactionsDate[indexPath.row]
         
         cell.categoryImage.image = transaction.photo
         cell.categoryNameLbl.text = transaction.category
@@ -218,7 +234,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let transaction = transactions[indexPath.row]
+        let transaction = transactionsDate[indexPath.row]
         transactionChoosen = transaction
         isBtnAddPressed = false
         performSegue(withIdentifier: "ShowOrAddTransaction", sender: self)
@@ -233,8 +249,8 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteTransaction(idx: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            updateGeneral()
+            //tableView.deleteRows(at: [indexPath], with: .fade)
+            viewWillAppear(true)
         }
     }
     /*
