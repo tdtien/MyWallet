@@ -714,9 +714,6 @@
                             <constraint firstItem="Etf-CS-ZAS" firstAttribute="trailing" secondItem="wsa-jl-Ttj" secondAttribute="trailing" id="tKh-M4-XC8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LLz-69-Cfd"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="3El-j9-J58" appends="YES" id="UBR-RH-auw"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="lblTienRa" destination="wsa-jl-Ttj" id="G4t-m7-jhS"/>
@@ -727,7 +724,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xdh-FL-7Pa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="3El-j9-J58"/>
             </objects>
             <point key="canvasLocation" x="367" y="116"/>
         </scene>
