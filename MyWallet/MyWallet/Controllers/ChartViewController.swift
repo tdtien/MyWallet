@@ -48,7 +48,17 @@ class ChartViewController: UIViewController, UITextFieldDelegate {
         if let savedTransactions = loadTransactions() {
             transactions += savedTransactions
         }
-        setChart(transactions: transactions)
+        if transactions.count > 0 {
+            setChart(transactions: transactions)
+        } else {
+            let alert = UIAlertController(title: "Error!", message: "No data", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                if let ownNavigationController = self.navigationController {
+                    ownNavigationController.popViewController(animated: true)
+                }
+            }))
+            present(alert, animated: true, completion: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
