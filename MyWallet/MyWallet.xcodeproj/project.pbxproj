@@ -30,6 +30,7 @@
 		B5F9203920E76BE2009E07AC /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9203820E76BE2009E07AC /* ChartViewController.swift */; };
 		B5F9897720E53531003DA814 /* AllCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */; };
 		B5F9897920E539E5003DA814 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F9897820E539E5003DA814 /* Category.swift */; };
+		B5FBBCF120E920DB00E3D665 /* ChartValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBBCF020E920DB00E3D665 /* ChartValueFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		B5F9203820E76BE2009E07AC /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		B5F9897820E539E5003DA814 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		B5FBBCF020E920DB00E3D665 /* ChartValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartValueFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				618C3BB520CBA564009E13CB /* AppDelegate.swift */,
 				618C3BB720CBA564009E13CB /* ViewController.swift */,
 				61660B8F20E7E01B00FA0B21 /* UIView+constraints.swift */,
+				B5FBBCF020E920DB00E3D665 /* ChartValueFormatter.swift */,
 				618C3BB920CBA564009E13CB /* Main.storyboard */,
 				618C3BC120CBA566009E13CB /* LaunchScreen.storyboard */,
 				618C3BC420CBA566009E13CB /* Info.plist */,
@@ -298,6 +301,7 @@
 				6125D3BF20D63E7900D99293 /* ResetPasswordViewController.swift in Sources */,
 				B5F9203920E76BE2009E07AC /* ChartViewController.swift in Sources */,
 				61B3ACB920E4E34900D0BF48 /* User.swift in Sources */,
+				B5FBBCF120E920DB00E3D665 /* ChartValueFormatter.swift in Sources */,
 				61660B9020E7E01B00FA0B21 /* UIView+constraints.swift in Sources */,
 				61660B8E20E7DF4600FA0B21 /* MainViewController.swift in Sources */,
 				618C3BB820CBA564009E13CB /* ViewController.swift in Sources */,

@@ -91,6 +91,13 @@ class ChartViewController: UIViewController, UITextFieldDelegate {
         
         
         pieChartDataSet.colors = colors
+        //format value to string
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.locale = Locale.current
+        let valuesNumberFormatter = ChartValueFormatter(numberFormatter: numberFormatter)
+        pieChartDataSet.valueFormatter = valuesNumberFormatter
+        
         let pieChartData = PieChartData(dataSet: pieChartDataSet)
         pieChartView.data = pieChartData
         
