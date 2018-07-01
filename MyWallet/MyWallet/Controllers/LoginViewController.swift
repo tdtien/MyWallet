@@ -61,6 +61,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 return
             }
             // User is signed in
+            let ref = Database.database().reference()
+            if let user = Auth.auth().currentUser {
+                let newUser = User(email: "", amount: "")
+                ref.child("users").child(user.uid).setValue(newUser.toAnyObject())
+            }
             self.activityControl.stopAnimating()
             self.performSegue(withIdentifier: "LoginSuccessSegue", sender: self)
         }
