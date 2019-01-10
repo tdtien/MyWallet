@@ -126,7 +126,7 @@
 		294BDF8821DDB744001A1097 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				29ABCE7721E69DC8000BA439 /* CellModels */,
+				29ABCE7721E69DC8000BA439 /* ViewCell */,
 				295AB2B621E6E24600C0D56C /* Controllers */,
 			);
 			path = PresentationLayer;
@@ -214,13 +214,13 @@
 			path = WalletBusiness;
 			sourceTree = "<group>";
 		};
-		29ABCE7721E69DC8000BA439 /* CellModels */ = {
+		29ABCE7721E69DC8000BA439 /* ViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */,
 				B59C3BE320CD184900BFCC04 /* TransactionTableViewCell.swift */,
 			);
-			path = CellModels;
+			path = ViewCell;
 			sourceTree = "<group>";
 		};
 		29FFB37821DDE755003A0376 /* Utilities */ = {
