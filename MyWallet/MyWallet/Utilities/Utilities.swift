@@ -36,45 +36,6 @@ class Utilities: NSObject {
         }
         return Double(result)!
     }
-
-    static func filterByDate(date: Date,transactions: [Transaction], type: Int) -> [Transaction] {
-        var transactionsDate = [Transaction]()
-        transactionsDate.removeAll()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        for item in transactions {
-            let dateItem = dateFormatter.date(from: item.date)
-            var flag = false
-            if type == 0 {
-                flag = (dateItem?.isInSameDay(date: date))!
-            }
-            if type == 1 {
-                flag = (dateItem?.isInSameMonth(date: date))!
-            }
-            if type == 2 {
-                flag = (dateItem?.isInSameYear(date: date))!
-            }
-            if flag {
-                transactionsDate.append(item)
-            }
-        }
-        return transactionsDate
-    }
-    
-    static func updateGeneralWithTransactions(transactionsDate: [Transaction]) -> (Int, Int) {
-        var tienVao = 0
-        var tienRa = 0
-        for item in transactionsDate {
-            if item.type == 0 {
-                tienRa += Int(item.price) ?? 0
-            } else {
-                tienVao += Int(item.price) ?? 0
-            }
-        }
-        return (tienVao, tienRa)
-    
-    }
-   
 }
 extension Date {
     func getNextMonth() -> Date? {

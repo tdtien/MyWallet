@@ -148,7 +148,6 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
                 }
                 self.transactionBusiness.saveTransaction(transaction: transaction)
                 transactions.append(transaction)
-                //tblView.insertRows(at: [newIndexPath], with: .automatic)
                 viewWillAppear(true)
             }
         }
