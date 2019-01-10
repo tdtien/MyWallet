@@ -20,6 +20,13 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     var isBtnAddPressed:Bool = false
     var date:Date?
     var type:Int?
+    //Adapter
+    let databaseAdapter = DatabaseAdapter.sharedInstance
+    let authenticationAdapter = AuthenticationAdapter.sharedInstance
+    let transactionAdapter = TransactionAdapter.sharedInstance
+    //Business
+    let transactionBusiness = TransactionBusiness.sharedInstance
+    
     
     // MARK: Properties
     @IBOutlet weak var tblView: UITableView!
@@ -42,20 +49,21 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         if  !(userID?.isEmpty)! {
-                ref.child("users").child(userID!).observe(.value) { (snapshot) in
-                self.user = User(snapshot: snapshot)
+            self.databaseAdapter.observeWith(userID: userID!, reference: ref) { (user) in
+                self.user = user
             }
         }
     }
     override func viewWillAppear(_ animated: Bool) {
         transactions.removeAll()
-        if let savedTransactions = loadTransactions() {
+        if let savedTransactions = transactionBusiness.loadAllTransactionsFromDevice() {
             transactions += savedTransactions
         }
         filterByDate()
         updateGeneral()
         tblView.reloadData()
     }
+    
     // MARKS: Private methods
     private func filterByDate() {
         transactionsDate.removeAll()
@@ -78,6 +86,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             }
         }
     }
+    
     private func updateGeneral() {
         var tienVao = 0
         var tienRa = 0
@@ -89,95 +98,15 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             }
         }
         let tongTien = tienVao - tienRa
-        lblTienVao.text = formatCurrency(string: "\(tienVao)")
-        lblTienRa.text = formatCurrency(string: "\(tienRa)")
+        lblTienVao.text = Utilities.formatCurrency(string: "\(tienVao)")
+        lblTienRa.text = Utilities.formatCurrency(string: "\(tienRa)")
         if tongTien >= 0 {
-            lblTongTien.text = formatCurrency(string: "\(abs(tongTien))")
+            lblTongTien.text = Utilities.formatCurrency(string: "\(abs(tongTien))")
         } else {
-            lblTongTien.text = "-\(formatCurrency(string: "\(abs(tongTien))"))"
+            lblTongTien.text = "-\(Utilities.formatCurrency(string: "\(abs(tongTien))"))"
         }
     }
-    private func formatCurrency(string: String) -> String {
-        var str = string
-        var count = 0
-        for (index, _) in str.enumerated().reversed() {
-            count = count + 1
-            if count == 4 {
-                let idx = str.index(str.startIndex, offsetBy: index + 1)
-                str.insert(",", at: idx)
-                count = 1
-            }
-        }
-        str = str + " ₫"
-        return str
-    }
-    private func saveTransaction(transaction: Transaction) {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let transactionEntity = NSEntityDescription.entity(forEntityName: "TransactionEntity", in: context)
-        let newTransaction = NSManagedObject(entity: transactionEntity!, insertInto: context)
-        newTransaction.setValue(transaction.type, forKey: "type")
-        newTransaction.setValue(transaction.price, forKey: "price")
-        newTransaction.setValue(transaction.category, forKey: "category")
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
-        let date = formatter.date(from: transaction.date)
-        newTransaction.setValue(date, forKey: "date")
-        newTransaction.setValue(transaction.note, forKey: "note")
-        let imageData = NSData(data: UIImageJPEGRepresentation(transaction.photo!, 1.0)!)
-        newTransaction.setValue(imageData, forKey: "photo")
-        do {
-            try context.save()
-        } catch {
-            print("Failed saving...")
-        }
-    }
-    private func deleteTransaction(idx: Int) {
-        var list = [TransactionEntity]()
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let transactionFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "TransactionEntity")
-        do {
-            list = try context.fetch(transactionFetch) as! [TransactionEntity]
-        } catch {
-            print("Fetching failed")
-        }
-        context.delete(list[idx] as NSManagedObject)
-        do {
-            try context.save()
-            transactions.remove(at: idx)
-        } catch {
-            print("Failed deleting")
-        }
-    }
-    private func deleteAll() {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let transactionFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "TransactionEntity")
-        let deletereq = NSBatchDeleteRequest(fetchRequest: transactionFetch)
-        do {
-            try context.execute(deletereq)
-        } catch {
-            print("Failed deleting all")
-        }
-    }
-    private func loadTransactions() -> [Transaction]? {
-        var list = [TransactionEntity]()
-        var listTransaction = [Transaction]()
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let transactionFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "TransactionEntity")
-        do {
-            list = try context.fetch(transactionFetch) as! [TransactionEntity]
-        } catch {
-            print("Fetching failed")
-        }
-        for item in list {
-            let date = item.date!
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd/MM/yyyy"
-            let dateString = formatter.string(from: date)
-            let transaction = Transaction(photo: UIImage(data: item.photo!, scale: 1.0), category: item.category!, type: Int(item.type), price: item.price!, note: item.note!, date: dateString)
-            listTransaction.append(transaction!)
-        }
-        return listTransaction
-    }
+    
     // MARK: Actions
     @IBAction func unwindtoTransactionTableViewController(segue:UIStoryboardSegue) {
         if let sourceViewController = segue.source as? AddTransactionViewController, let transaction = sourceViewController.myTransaction {
@@ -195,15 +124,13 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
                 } else {
                     currentAmount = currentAmount + Int(transaction.price)!
                 }
-                let ref = Database.database().reference()
-                if let curUser = Auth.auth().currentUser {
-                    let childUpdate = ["/users/\(curUser.uid)/amount": String(currentAmount)]
-                    ref.updateChildValues(childUpdate)
+                let ref = databaseAdapter.getDatabaseReference()
+                if let curUser = authenticationAdapter.currentUser() {
+                    databaseAdapter.updateChildValues(user: curUser, amount: String(currentAmount), reference: ref)
                 }
-                //tblView.reloadRows(at: [selectedIndexPath], with: .none)
-                deleteAll()
+                self.transactionBusiness.deleteAllTransactions()
                 for item in transactions {
-                    saveTransaction(transaction: item)
+                    self.transactionBusiness.saveTransaction(transaction: item)
                 }
                 viewWillAppear(true)
             } else {
@@ -215,12 +142,11 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
                 } else {
                     currentAmount = currentAmount + Int(transaction.price)!
                 }
-                let ref = Database.database().reference()
-                if let curUser = Auth.auth().currentUser {
-                    let childUpdate = ["/users/\(curUser.uid)/amount": String(currentAmount)]
-                    ref.updateChildValues(childUpdate)
+                let ref = databaseAdapter.getDatabaseReference()
+                if let curUser = authenticationAdapter.currentUser() {
+                    databaseAdapter.updateChildValues(user: curUser, amount: String(currentAmount), reference: ref)
                 }
-                saveTransaction(transaction: transaction)
+                self.transactionBusiness.saveTransaction(transaction: transaction)
                 transactions.append(transaction)
                 //tblView.insertRows(at: [newIndexPath], with: .automatic)
                 viewWillAppear(true)
@@ -262,10 +188,10 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         cell.categoryNameLbl.text = transaction.category
         cell.transactionNameLbl.text = transaction.note
         if transaction.type == 0 {
-            cell.priceLbl.text = "-\(formatCurrency(string: transaction.price))"
+            cell.priceLbl.text = "-\(Utilities.formatCurrency(string: transaction.price))"
             cell.priceLbl.textColor = UIColor.red
         } else {
-            cell.priceLbl.text = "+\(formatCurrency(string: transaction.price))"
+            cell.priceLbl.text = "+\(Utilities.formatCurrency(string: transaction.price))"
             cell.priceLbl.textColor = UIColor.blue
         }
         return cell
@@ -297,7 +223,9 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
                 let childUpdate = ["/users/\(curUser.uid)/amount": String(currentAmount)]
                 ref.updateChildValues(childUpdate)
             }
-            deleteTransaction(idx: transactions.index(of: transactionsDate[indexPath.row])!)
+            let index = transactions.index(of: transactionsDate[indexPath.row])!
+            transactions.remove(at: index)
+            self.transactionBusiness.deleteTransaction(idx: index)
             viewWillAppear(true)
         }
     }
@@ -340,23 +268,4 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     }
     */
 
-    /*
-    private func loadSampleTransaction()
-    {
-        let photo1 = UIImage(named: "IconAnUong")
-        let photo2 = UIImage(named: "IconDiChuyen")
-        
-        guard let transaction1 = Transaction(photo: photo1, category: "Ăn uống", nameTransaction: "Bún bò", price: "20.000",note: "Delicious", date: "29/06/2018")
-            else {
-                fatalError("Unable to instantiate expense1")
-        }
-        
-        guard let transaction2 = Transaction(photo: photo2, category: "Di chuyển", nameTransaction: "Đổ xăng", price: "50.000",note: "OK", date: "29/06/2018")
-            else {
-                fatalError("Unable to instantiate expense2")
-        }
-        
-        transactions+=[transaction1,transaction2]
-    }
-    */
 }

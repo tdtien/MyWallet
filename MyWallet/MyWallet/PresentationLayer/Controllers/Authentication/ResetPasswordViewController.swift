@@ -13,6 +13,7 @@ class ResetPasswordViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var txtfieldEmail: UITextField!
+    let authenticationAdapter = AuthenticationAdapter.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,7 @@ class ResetPasswordViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
-            Auth.auth().sendPasswordReset(withEmail: txtfieldEmail.text!) { (error) in
+            authenticationAdapter.sendPasswordReset(withEmail: txtfieldEmail.text) { (error) in
                 if let error = error {
                     let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))

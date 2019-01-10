@@ -21,21 +21,7 @@ class ChartValueFormatter: NSObject, IValueFormatter {
         guard let numberFormatter = numberFormatter else {
             return ""
         }
-        return formatCurrency(string: String(format: "%.0f", value))
+        return Utilities.formatCurrency(string: String(format: "%.0f", value))
     }
 }
 
-private func formatCurrency(string: String) -> String {
-    var str = string
-    var count = 0
-    for (index, _) in str.enumerated().reversed() {
-        count = count + 1
-        if count == 4 {
-            let idx = str.index(str.startIndex, offsetBy: index + 1)
-            str.insert(",", at: idx)
-            count = 1
-        }
-    }
-    str = str + " ₫"
-    return str
-}

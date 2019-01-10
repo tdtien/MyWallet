@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1F1312A6FCE09C44BB12CD67 /* Pods_MyWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4561B95ADE567609A23F7AB2 /* Pods_MyWallet.framework */; };
+		29ABCE6D21E697E1000BA439 /* DatabaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABCE6C21E697E1000BA439 /* DatabaseAdapter.swift */; };
+		29ABCE7221E69864000BA439 /* TransactionBusiness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABCE7121E69864000BA439 /* TransactionBusiness.swift */; };
+		29ABCE7421E69892000BA439 /* CategoryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABCE7321E69892000BA439 /* CategoryAdapter.swift */; };
+		29ABCE7621E6989F000BA439 /* TransactionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABCE7521E6989F000BA439 /* TransactionAdapter.swift */; };
+		29FFB37721DDE677003A0376 /* AuthenticationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FFB37621DDE677003A0376 /* AuthenticationAdapter.swift */; };
+		29FFB37A21DDE766003A0376 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FFB37921DDE766003A0376 /* Utilities.swift */; };
 		6125D3BE20D63E7900D99293 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125D3BB20D63E7600D99293 /* LoginViewController.swift */; };
 		6125D3BF20D63E7900D99293 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125D3BC20D63E7800D99293 /* ResetPasswordViewController.swift */; };
 		6125D3C020D63E7900D99293 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125D3BD20D63E7900D99293 /* SignUpViewController.swift */; };
@@ -16,7 +22,6 @@
 		61660B9020E7E01B00FA0B21 /* UIView+constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61660B8F20E7E01B00FA0B21 /* UIView+constraints.swift */; };
 		617D37C620E620D700EC1244 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 617D37C520E620D700EC1244 /* GoogleService-Info.plist */; };
 		618C3BB620CBA564009E13CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C3BB520CBA564009E13CB /* AppDelegate.swift */; };
-		618C3BB820CBA564009E13CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C3BB720CBA564009E13CB /* ViewController.swift */; };
 		618C3BBB20CBA564009E13CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 618C3BB920CBA564009E13CB /* Main.storyboard */; };
 		618C3BBE20CBA564009E13CB /* MyWallet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 618C3BBC20CBA564009E13CB /* MyWallet.xcdatamodeld */; };
 		618C3BC020CBA566009E13CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 618C3BBF20CBA566009E13CB /* Assets.xcassets */; };
@@ -34,6 +39,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29ABCE6C21E697E1000BA439 /* DatabaseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAdapter.swift; sourceTree = "<group>"; };
+		29ABCE7121E69864000BA439 /* TransactionBusiness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionBusiness.swift; sourceTree = "<group>"; };
+		29ABCE7321E69892000BA439 /* CategoryAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAdapter.swift; sourceTree = "<group>"; };
+		29ABCE7521E6989F000BA439 /* TransactionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionAdapter.swift; sourceTree = "<group>"; };
+		29FFB37621DDE677003A0376 /* AuthenticationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAdapter.swift; sourceTree = "<group>"; };
+		29FFB37921DDE766003A0376 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		31A679F9E6EA8D3BC7EF3700 /* Pods-MyWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWallet/Pods-MyWallet.release.xcconfig"; sourceTree = "<group>"; };
 		4561B95ADE567609A23F7AB2 /* Pods_MyWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		585AED389AA8A194B3B5C5D6 /* Pods-MyWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyWallet/Pods-MyWallet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -46,7 +57,6 @@
 		617D37C520E620D700EC1244 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		618C3BB220CBA564009E13CB /* MyWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		618C3BB520CBA564009E13CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		618C3BB720CBA564009E13CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		618C3BBA20CBA564009E13CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		618C3BBD20CBA564009E13CB /* MyWallet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyWallet.xcdatamodel; sourceTree = "<group>"; };
 		618C3BBF20CBA566009E13CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +86,152 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2901E07221E6489500E0DBB1 /* FirebaseAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				29FFB37621DDE677003A0376 /* AuthenticationAdapter.swift */,
+				29ABCE6C21E697E1000BA439 /* DatabaseAdapter.swift */,
+			);
+			path = FirebaseAdapter;
+			sourceTree = "<group>";
+		};
+		2901E07521E6507100E0DBB1 /* WalletAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				29ABCE7321E69892000BA439 /* CategoryAdapter.swift */,
+				29ABCE7521E6989F000BA439 /* TransactionAdapter.swift */,
+			);
+			path = WalletAdapter;
+			sourceTree = "<group>";
+		};
+		294BDF8521DDB6FE001A1097 /* DataLayer */ = {
+			isa = PBXGroup;
+			children = (
+				29ABCE6E21E69802000BA439 /* Entities */,
+				2901E07521E6507100E0DBB1 /* WalletAdapter */,
+				2901E07221E6489500E0DBB1 /* FirebaseAdapter */,
+			);
+			path = DataLayer;
+			sourceTree = "<group>";
+		};
+		294BDF8621DDB70D001A1097 /* BusinessLayer */ = {
+			isa = PBXGroup;
+			children = (
+				29ABCE6F21E6983B000BA439 /* Entities */,
+				29ABCE7021E6984F000BA439 /* WalletBusiness */,
+			);
+			path = BusinessLayer;
+			sourceTree = "<group>";
+		};
+		294BDF8821DDB744001A1097 /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				29ABCE7721E69DC8000BA439 /* CellModels */,
+				295AB2B621E6E24600C0D56C /* Controllers */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		295AB2B621E6E24600C0D56C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				29ABCE6A21E6976F000BA439 /* Authentication */,
+				29ABCE6B21E69777000BA439 /* Wallet */,
+				295AB2B721E6EF2F00C0D56C /* Chart */,
+				295AB2B821E6EF4200C0D56C /* MainVewController */,
+				295AB2B921E6FE7F00C0D56C /* Stylesheet */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		295AB2B721E6EF2F00C0D56C /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				B5F9203820E76BE2009E07AC /* ChartViewController.swift */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		295AB2B821E6EF4200C0D56C /* MainVewController */ = {
+			isa = PBXGroup;
+			children = (
+				61660B8D20E7DF4600FA0B21 /* MainViewController.swift */,
+			);
+			path = MainVewController;
+			sourceTree = "<group>";
+		};
+		295AB2B921E6FE7F00C0D56C /* Stylesheet */ = {
+			isa = PBXGroup;
+			children = (
+				61660B8F20E7E01B00FA0B21 /* UIView+constraints.swift */,
+			);
+			path = Stylesheet;
+			sourceTree = "<group>";
+		};
+		29ABCE6A21E6976F000BA439 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				6125D3BB20D63E7600D99293 /* LoginViewController.swift */,
+				6125D3BD20D63E7900D99293 /* SignUpViewController.swift */,
+				6125D3BC20D63E7800D99293 /* ResetPasswordViewController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		29ABCE6B21E69777000BA439 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				6144D35A20DCE21A00EA90F7 /* InitialWalletViewController.swift */,
+				B5771F5420DC0E6D009A9605 /* CategoryViewController.swift */,
+				B5137DEA20D6AA4B007D5B5C /* AddTransactionViewController.swift */,
+				B59C3BE820CD246100BFCC04 /* TransactionTableViewController.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		29ABCE6E21E69802000BA439 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				61B3ACB820E4E34900D0BF48 /* User.swift */,
+				B5F9897820E539E5003DA814 /* Category.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		29ABCE6F21E6983B000BA439 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				B59C3BE620CD1D4E00BFCC04 /* Transaction.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		29ABCE7021E6984F000BA439 /* WalletBusiness */ = {
+			isa = PBXGroup;
+			children = (
+				29ABCE7121E69864000BA439 /* TransactionBusiness.swift */,
+			);
+			path = WalletBusiness;
+			sourceTree = "<group>";
+		};
+		29ABCE7721E69DC8000BA439 /* CellModels */ = {
+			isa = PBXGroup;
+			children = (
+				B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */,
+				B59C3BE320CD184900BFCC04 /* TransactionTableViewCell.swift */,
+			);
+			path = CellModels;
+			sourceTree = "<group>";
+		};
+		29FFB37821DDE755003A0376 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				29FFB37921DDE766003A0376 /* Utilities.swift */,
+				B5FBBCF020E920DB00E3D665 /* ChartValueFormatter.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		3890B9E2C5A1A20EEC60F6CA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,13 +262,12 @@
 		618C3BB420CBA564009E13CB /* MyWallet */ = {
 			isa = PBXGroup;
 			children = (
-				61B3ACBA20E4E87000D0BF48 /* Controllers */,
-				61B3ACB720E4E31500D0BF48 /* Models */,
+				294BDF8821DDB744001A1097 /* PresentationLayer */,
+				294BDF8621DDB70D001A1097 /* BusinessLayer */,
+				294BDF8521DDB6FE001A1097 /* DataLayer */,
+				29FFB37821DDE755003A0376 /* Utilities */,
 				618C3BBF20CBA566009E13CB /* Assets.xcassets */,
 				618C3BB520CBA564009E13CB /* AppDelegate.swift */,
-				618C3BB720CBA564009E13CB /* ViewController.swift */,
-				61660B8F20E7E01B00FA0B21 /* UIView+constraints.swift */,
-				B5FBBCF020E920DB00E3D665 /* ChartValueFormatter.swift */,
 				618C3BB920CBA564009E13CB /* Main.storyboard */,
 				618C3BC120CBA566009E13CB /* LaunchScreen.storyboard */,
 				618C3BC420CBA566009E13CB /* Info.plist */,
@@ -120,34 +275,6 @@
 				618C3BBC20CBA564009E13CB /* MyWallet.xcdatamodeld */,
 			);
 			path = MyWallet;
-			sourceTree = "<group>";
-		};
-		61B3ACB720E4E31500D0BF48 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */,
-				B59C3BE620CD1D4E00BFCC04 /* Transaction.swift */,
-				61B3ACB820E4E34900D0BF48 /* User.swift */,
-				B5F9897820E539E5003DA814 /* Category.swift */,
-				B59C3BE320CD184900BFCC04 /* TransactionTableViewCell.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		61B3ACBA20E4E87000D0BF48 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				6125D3BB20D63E7600D99293 /* LoginViewController.swift */,
-				6125D3BD20D63E7900D99293 /* SignUpViewController.swift */,
-				6125D3BC20D63E7800D99293 /* ResetPasswordViewController.swift */,
-				6144D35A20DCE21A00EA90F7 /* InitialWalletViewController.swift */,
-				B5137DEA20D6AA4B007D5B5C /* AddTransactionViewController.swift */,
-				B5771F5420DC0E6D009A9605 /* CategoryViewController.swift */,
-				B59C3BE820CD246100BFCC04 /* TransactionTableViewController.swift */,
-				B5F9203820E76BE2009E07AC /* ChartViewController.swift */,
-				61660B8D20E7DF4600FA0B21 /* MainViewController.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		62E4426C17B436CDFA3671FC /* Frameworks */ = {
@@ -246,7 +373,7 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Parchment/Parchment.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -259,7 +386,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parchment.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -297,21 +424,26 @@
 				6125D3BE20D63E7900D99293 /* LoginViewController.swift in Sources */,
 				B5F9897920E539E5003DA814 /* Category.swift in Sources */,
 				B59C3BE420CD184900BFCC04 /* TransactionTableViewCell.swift in Sources */,
+				29ABCE7221E69864000BA439 /* TransactionBusiness.swift in Sources */,
+				29FFB37721DDE677003A0376 /* AuthenticationAdapter.swift in Sources */,
 				618C3BBE20CBA564009E13CB /* MyWallet.xcdatamodeld in Sources */,
 				6125D3BF20D63E7900D99293 /* ResetPasswordViewController.swift in Sources */,
+				29ABCE7421E69892000BA439 /* CategoryAdapter.swift in Sources */,
 				B5F9203920E76BE2009E07AC /* ChartViewController.swift in Sources */,
 				61B3ACB920E4E34900D0BF48 /* User.swift in Sources */,
 				B5FBBCF120E920DB00E3D665 /* ChartValueFormatter.swift in Sources */,
+				29FFB37A21DDE766003A0376 /* Utilities.swift in Sources */,
 				61660B9020E7E01B00FA0B21 /* UIView+constraints.swift in Sources */,
 				61660B8E20E7DF4600FA0B21 /* MainViewController.swift in Sources */,
-				618C3BB820CBA564009E13CB /* ViewController.swift in Sources */,
 				618C3BB620CBA564009E13CB /* AppDelegate.swift in Sources */,
 				6125D3C020D63E7900D99293 /* SignUpViewController.swift in Sources */,
 				6144D35B20DCE21A00EA90F7 /* InitialWalletViewController.swift in Sources */,
 				B5771F5520DC0E6D009A9605 /* CategoryViewController.swift in Sources */,
 				B5137DEB20D6AA4B007D5B5C /* AddTransactionViewController.swift in Sources */,
+				29ABCE6D21E697E1000BA439 /* DatabaseAdapter.swift in Sources */,
 				B59C3BE920CD246100BFCC04 /* TransactionTableViewController.swift in Sources */,
 				B59C3BE720CD1D4E00BFCC04 /* Transaction.swift in Sources */,
+				29ABCE7621E6989F000BA439 /* TransactionAdapter.swift in Sources */,
 				B5F9897720E53531003DA814 /* AllCategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

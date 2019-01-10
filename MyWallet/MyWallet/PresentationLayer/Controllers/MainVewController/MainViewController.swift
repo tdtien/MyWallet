@@ -16,18 +16,20 @@ class MainViewController: UIViewController {
     var type = 1
     let dropdown = DropDown()
     var currentUser:User?
+    let databaseAdapter = DatabaseAdapter.sharedInstance
+    let authenticationAdapter = AuthenticationAdapter.sharedInstance
     @IBOutlet weak var btnMenu: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let ref = Database.database().reference()
-        if let user = Auth.auth().currentUser {
-            ref.child("users").child(user.uid).observe(.value) { (snapshot) in
-                self.currentUser = User(snapshot: snapshot)
+        let ref = databaseAdapter.getDatabaseReference()
+        if let user = authenticationAdapter.currentUser() {
+            databaseAdapter.observeWith(userID: user.uid, reference: ref) { (user) in
+                self.currentUser = user
                 if (self.currentUser?.amount.isEmpty)! {
                     self.performSegue(withIdentifier: "InitialWalletSegue", sender: self)
                 } else {
-                    self.title = self.formatCurrency(string: (self.currentUser?.amount)!)
+                    self.title = Utilities.formatCurrency(string: (self.currentUser?.amount)!)
                 }
             }
         }
@@ -138,20 +140,6 @@ class MainViewController: UIViewController {
         performSegue(withIdentifier: "ChartViewSegue", sender: self)
     }
 
-    private func formatCurrency(string: String) -> String {
-        var str = string
-        var count = 0
-        for (index, _) in str.enumerated().reversed() {
-            count = count + 1
-            if count == 4 {
-                let idx = str.index(str.startIndex, offsetBy: index + 1)
-                str.insert(",", at: idx)
-                count = 1
-            }
-        }
-        str = str + " ₫"
-        return str
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -168,49 +156,4 @@ class MainViewController: UIViewController {
     }
     */
 
-}
-extension Date {
-    func getNextMonth() -> Date? {
-        return Calendar.current.date(byAdding: .month, value: 1, to: self)
-    }
-    func getPreviousMonth() -> Date? {
-        return Calendar.current.date(byAdding: .month, value: -1, to: self)
-    }
-    func getNextDate() -> Date? {
-        return Calendar.current.date(byAdding: .day, value: 1, to: self)
-    }
-    func getNextYear() -> Date? {
-        return Calendar.current.date(byAdding: .year, value: 1, to: self)
-    }
-    func getPreviousDate() -> Date? {
-        return Calendar.current.date(byAdding: .day, value: -1, to: self)
-    }
-    func isInSameWeek(date: Date) -> Bool {
-        return Calendar.current.isDate(self, equalTo: date, toGranularity: .weekOfYear)
-    }
-    func isInSameMonth(date: Date) -> Bool {
-        return Calendar.current.isDate(self, equalTo: date, toGranularity: .month)
-    }
-    func isInSameYear(date: Date) -> Bool {
-        return Calendar.current.isDate(self, equalTo: date, toGranularity: .year)
-    }
-    func isInSameDay(date: Date) -> Bool {
-        return Calendar.current.isDate(self, equalTo: date, toGranularity: .day)
-    }
-}
-extension Calendar {
-    func startOfMonth(_ date: Date) -> Date {
-        return self.date(from: self.dateComponents([.year, .month], from: date))!
-    }
-
-    func endOfMonth(_ date: Date) -> Date {
-        return self.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth(date))!
-    }
-    func startOfYear(_ date: Date) -> Date {
-        return self.date(from: self.dateComponents([.year], from: date))!
-    }
-
-    func endOfYear(_ date: Date) -> Date {
-        return self.date(from: DateComponents(year: self.component(.year, from: date), month: 12, day: 31))!
-    }
 }

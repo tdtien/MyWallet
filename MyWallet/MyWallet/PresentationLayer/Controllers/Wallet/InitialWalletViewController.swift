@@ -14,7 +14,8 @@ class InitialWalletViewController: UIViewController, UITextFieldDelegate {
     // MARK: Properties
     @IBOutlet weak var textFieldAmount: UITextField!
     var amount: String?
-
+    let databaseAdapter = DatabaseAdapter.sharedInstance
+    let authenticationAdapter = AuthenticationAdapter.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +33,9 @@ class InitialWalletViewController: UIViewController, UITextFieldDelegate {
         textFieldAmount.resignFirstResponder()
     }
     @IBAction func saveAmount(_ sender: Any) {
-        let ref = Database.database().reference()
-        if let user = Auth.auth().currentUser {
-            let childUpdate = ["/users/\(user.uid)/amount": amount]
-            ref.updateChildValues(childUpdate)
+        let ref = databaseAdapter.getDatabaseReference()
+        if let user = authenticationAdapter.currentUser() {
+            databaseAdapter.updateChildValues(user: user, amount: amount, reference: ref)
             dismiss(animated: true, completion: nil)
         }
     }

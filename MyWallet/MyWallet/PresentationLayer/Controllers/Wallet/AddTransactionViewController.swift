@@ -38,7 +38,7 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate{
         if (myTransaction != nil)
         {
             title = "Edit Transaction"
-            txtPrice.text = formatCurrency(string: (myTransaction?.price)!)
+            txtPrice.text = Utilities.formatCurrency(string: (myTransaction?.price)!)
             imgCategory.image = myTransaction?.photo
             txtCategory.text = myTransaction?.category
             txtNote.text = myTransaction?.note
@@ -77,7 +77,6 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate{
         }
         textField.text = str
     }
-    
     
     
     @objc func createDatePicker()
@@ -124,24 +123,7 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate{
         view.endEditing(true)
     }
     // MARKS: Private methods
-    private func formatCurrency(string: String) -> String {
-        var str = string
-        var count = 0
-        for (index, _) in str.enumerated().reversed() {
-            count = count + 1
-            if count == 4 {
-                let idx = str.index(str.startIndex, offsetBy: index + 1)
-                str.insert(",", at: idx)
-                count = 1
-            }
-        }
-        return str
-    }
-    
-    
-
-
-
+  
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

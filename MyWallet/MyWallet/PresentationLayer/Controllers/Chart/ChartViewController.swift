@@ -20,9 +20,10 @@ class ChartViewController: UIViewController, UITextFieldDelegate {
     let dateToPicker = UIDatePicker()
     var dateFrom:Date? = nil    //New
     var dateTo:Date? = nil      //New
-    var strDateFrom:String = "30/06/2018"
-    var strDateTo: String = "01/07/2018"
+    var strDateFrom:String = "09/01/2019"
+    var strDateTo: String = "10/01/2019"
     var transactions = [Transaction]()
+    let transactionBusiness = TransactionBusiness.sharedInstance
     
     
     override func viewDidLoad() {
@@ -33,9 +34,6 @@ class ChartViewController: UIViewController, UITextFieldDelegate {
         txtDateTo.delegate = self
         txtDateFrom.addTarget(self, action: #selector(createDateFromPicker), for: UIControlEvents.touchDown)
         txtDateTo.addTarget(self, action: #selector(createDateToPicker), for: UIControlEvents.touchDown)
-        /*let categories = ["Food", "Transportation", "Healthy", "Education", "Salary", "Entertainment", "Other"]
-        let values = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 8.0]*/
-        
         //set dateFrom and dateTo from two string date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -45,7 +43,7 @@ class ChartViewController: UIViewController, UITextFieldDelegate {
         txtDateTo.text = strDateTo
         
         // Load data
-        if let savedTransactions = loadTransactions() {
+        if let savedTransactions = transactionBusiness.loadTransactionsFormDeviceWith(dateFrom: dateFrom!, dateTo: dateTo!) {
             transactions += savedTransactions
         }
         if transactions.count > 0 {
@@ -117,10 +115,10 @@ class ChartViewController: UIViewController, UITextFieldDelegate {
             if (indexCategory == -1)
             {
                 tempCategories.append(transactions[i].category)
-                tempValues.append(formatStrMoneyToDouble(strMoney: transactions[i].price))
+                tempValues.append(Utilities.formatStrMoneyToDouble(strMoney: transactions[i].price))
             }
             else {
-                tempValues[indexCategory] += formatStrMoneyToDouble(strMoney: transactions[i].price)
+                tempValues[indexCategory] += Utilities.formatStrMoneyToDouble(strMoney: transactions[i].price)
             }
         }
         tempCategories = sortCategories(tempCategories: tempCategories, tempValues: tempValues).0
@@ -188,21 +186,7 @@ class ChartViewController: UIViewController, UITextFieldDelegate {
         }
         return -1
     }
-    
-    //format: 250,000đ -> 250000
-    func formatStrMoneyToDouble(strMoney: String) ->Double
-    {
-        var result:String = ""
-        for char in strMoney {
-            if (char == "0" || char == "1" || char == "2" || char == "3" || char == "4" || char == "5" || char == "6" || char == "7" || char == "8" || char == "9")
-            {
-                result.append(char)
-            }
-        }
-        return Double(result)!
-    }
-    
-    
+        
     @objc func createDateFromPicker()
     {
         dateFromPicker.datePickerMode = .date
@@ -245,7 +229,7 @@ class ChartViewController: UIViewController, UITextFieldDelegate {
             
             //draw a new pie chart with new dateFrom
             transactions.removeAll()
-            if let savedTransactions = loadTransactions() {
+            if let savedTransactions = transactionBusiness.loadTransactionsFormDeviceWith(dateFrom: dateFrom!, dateTo: dateTo!) {
                 transactions += savedTransactions
             }
             setChart(transactions: transactions)
@@ -295,47 +279,10 @@ class ChartViewController: UIViewController, UITextFieldDelegate {
             
             //draw a new pie chart with new dateTo
             transactions.removeAll()
-            if let savedTransactions = loadTransactions() {
+            if let savedTransactions = transactionBusiness.loadTransactionsFormDeviceWith(dateFrom: dateFrom!, dateTo: dateTo!) {
                 transactions += savedTransactions
             }
             setChart(transactions: transactions)
-        }
-    }
-    
-    //Mark: Load Transaction
-    private func loadTransactions() -> [Transaction]? {
-        var list = [TransactionEntity]()
-        var listTransaction = [Transaction]()
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let transactionFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "TransactionEntity")
-        do {
-            list = try context.fetch(transactionFetch) as! [TransactionEntity]
-        } catch {
-            print("Fetching failed")
-        }
-        for item in list {
-            let date = item.date!
-            
-            if (dateFrom! <= date && date <= dateTo!)
-            {
-                let formatter = DateFormatter()
-                formatter.dateFormat = "dd/MM/yyyy"
-                let dateString = formatter.string(from: date)
-                let transaction = Transaction(photo: UIImage(data: item.photo!, scale: 1.0), category: item.category!, type: Int(item.type), price: item.price!, note: item.note!, date: dateString)
-                listTransaction.append(transaction!)
-            }
-        }
-        return listTransaction
-    }
-    
-    private func deleteAll() {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let transactionFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "TransactionEntity")
-        let deletereq = NSBatchDeleteRequest(fetchRequest: transactionFetch)
-        do {
-            try context.execute(deletereq)
-        } catch {
-            print("Failed deleting all")
         }
     }
 

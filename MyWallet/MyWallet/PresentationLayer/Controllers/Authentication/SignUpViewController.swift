@@ -16,7 +16,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var txtfieldPassword: UITextField!
     @IBOutlet weak var txtfieldConfirmPassword: UITextField!
     @IBOutlet weak var activityControl: UIActivityIndicatorView!
-
+    let authenticationAdapter = AuthenticationAdapter.sharedInstance
+    let databaseAdapter = DatabaseAdapter.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,26 +44,28 @@ class SignUpViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
-            Auth.auth().createUser(withEmail: txtfieldEmail.text!, password: txtfieldPassword.text!) { (user, error) in
+            self.authenticationAdapter.createUser(withEmail: txtfieldEmail.text!, password: txtfieldPassword.text!) { (user, error) in
                 if (error != nil) {
                     self.activityControl.stopAnimating()
                     let alert = UIAlertController(title: "Error!", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    Auth.auth().signIn(withEmail: self.txtfieldEmail.text!, password: self.txtfieldPassword.text!, completion: { (user, error) in
+                    self.authenticationAdapter.signIn(withEmail: self.txtfieldEmail.text!, password: self.txtfieldPassword.text!, completionHandler: { (user, error) in
                         if let error = error {
                             self.activityControl.stopAnimating()
                             let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                             self.present(alert, animated: true, completion: nil)
                         } else {
-                            let ref = Database.database().reference()
-                            if let user = Auth.auth().currentUser {
+                            let ref = self.databaseAdapter.getDatabaseReference()
+                            if let user = self.authenticationAdapter.currentUser() {
                                 let newUser = User(email: user.email!, amount: "")
-                                ref.child("users").child(user.uid).setValue(newUser.toAnyObject())
+//                                ref.child("users").child(user.uid).setValue(newUser.toAnyObject())
+                                self.databaseAdapter.registerUserToFirebaseDatabase(user: user, reference: ref, newUser: newUser)
                             }
-                            Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                            let currentUser = self.authenticationAdapter.currentUser()
+                            self.authenticationAdapter.sendEmailVerification(user: currentUser!, completionHandler: { (error) in
                                 if let error = error {
                                     self.activityControl.stopAnimating()
                                     print(error.localizedDescription)
@@ -70,7 +73,7 @@ class SignUpViewController: UIViewController {
                                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                                     self.present(alert, animated: true, completion: nil)
                                 } else {
-                                self.activityControl.stopAnimating()
+                                    self.activityControl.stopAnimating()
                                     let alert = UIAlertController(title: "Sucessful", message: "Please check your inbox to complete registeration", preferredStyle: UIAlertControllerStyle.actionSheet)
                                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in self.dismiss(animated: true, completion: nil)}))
                                     self.txtfieldEmail.resignFirstResponder()
