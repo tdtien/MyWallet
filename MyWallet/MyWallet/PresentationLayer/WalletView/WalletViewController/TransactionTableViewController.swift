@@ -16,6 +16,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     var transactions = [Transaction]()
     var transactionsDate = [Transaction]()
     var transactionChoosen:Transaction?
+    var transactionViewModels = [TransactionViewModel]()
     var user:User?
     var isBtnAddPressed:Bool = false
     var date:Date?
@@ -67,6 +68,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     // MARKS: Private methods
     private func filterByDate() {
         transactionsDate.removeAll()
+        transactionViewModels.removeAll()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         for item in transactions {
@@ -83,6 +85,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             }
             if flag {
                 transactionsDate.append(item)
+                transactionViewModels.append(TransactionViewModel(transaction: item)!)
             }
         }
     }
@@ -135,7 +138,6 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
                 viewWillAppear(true)
             } else {
                 //Add a new transaction
-                //let newIndexPath = IndexPath(row: transactions.count, section: 0)
                 var currentAmount = Int((user?.amount)!)!
                 if transaction.type == 0 {
                     currentAmount = currentAmount - Int(transaction.price)!
@@ -171,7 +173,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactionsDate.count
+        return transactionViewModels.count
     }
 
     
@@ -181,18 +183,12 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             fatalError("The dequeued cell is not an instance of TransactionTableViewCell.")
         }
         
-        let transaction = transactionsDate[indexPath.row]
-        
+        let transaction = transactionViewModels[indexPath.row]
         cell.categoryImage.image = transaction.photo
         cell.categoryNameLbl.text = transaction.category
         cell.transactionNameLbl.text = transaction.note
-        if transaction.type == 0 {
-            cell.priceLbl.text = "-\(Utilities.formatCurrency(string: transaction.price))"
-            cell.priceLbl.textColor = UIColor.red
-        } else {
-            cell.priceLbl.text = "+\(Utilities.formatCurrency(string: transaction.price))"
-            cell.priceLbl.textColor = UIColor.blue
-        }
+        cell.priceLbl.text = transaction.price
+        cell.priceLbl.textColor = transaction.textColor
         return cell
     }
     

@@ -12,6 +12,7 @@
 		29ABCE7221E69864000BA439 /* TransactionBusiness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABCE7121E69864000BA439 /* TransactionBusiness.swift */; };
 		29ABCE7421E69892000BA439 /* CategoryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABCE7321E69892000BA439 /* CategoryAdapter.swift */; };
 		29ABCE7621E6989F000BA439 /* TransactionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABCE7521E6989F000BA439 /* TransactionAdapter.swift */; };
+		29FCBAD621E7422800AB34D1 /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCBAD521E7422800AB34D1 /* TransactionViewModel.swift */; };
 		29FFB37721DDE677003A0376 /* AuthenticationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FFB37621DDE677003A0376 /* AuthenticationAdapter.swift */; };
 		29FFB37A21DDE766003A0376 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FFB37921DDE766003A0376 /* Utilities.swift */; };
 		6125D3BE20D63E7900D99293 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125D3BB20D63E7600D99293 /* LoginViewController.swift */; };
@@ -43,6 +44,7 @@
 		29ABCE7121E69864000BA439 /* TransactionBusiness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionBusiness.swift; sourceTree = "<group>"; };
 		29ABCE7321E69892000BA439 /* CategoryAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAdapter.swift; sourceTree = "<group>"; };
 		29ABCE7521E6989F000BA439 /* TransactionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionAdapter.swift; sourceTree = "<group>"; };
+		29FCBAD521E7422800AB34D1 /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
 		29FFB37621DDE677003A0376 /* AuthenticationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAdapter.swift; sourceTree = "<group>"; };
 		29FFB37921DDE766003A0376 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		31A679F9E6EA8D3BC7EF3700 /* Pods-MyWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyWallet/Pods-MyWallet.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,67 +128,49 @@
 		294BDF8821DDB744001A1097 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				29ABCE7721E69DC8000BA439 /* ViewCell */,
-				295AB2B621E6E24600C0D56C /* Controllers */,
+				29ABCE6A21E6976F000BA439 /* AuthenticationView */,
+				29ABCE6B21E69777000BA439 /* WalletView */,
+				295AB2B721E6EF2F00C0D56C /* ChartView */,
+				295AB2B621E6E24600C0D56C /* MainViewController */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
 		};
-		295AB2B621E6E24600C0D56C /* Controllers */ = {
+		295AB2B621E6E24600C0D56C /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
-				29ABCE6A21E6976F000BA439 /* Authentication */,
-				29ABCE6B21E69777000BA439 /* Wallet */,
-				295AB2B721E6EF2F00C0D56C /* Chart */,
-				295AB2B821E6EF4200C0D56C /* MainVewController */,
-				295AB2B921E6FE7F00C0D56C /* Stylesheet */,
+				61660B8F20E7E01B00FA0B21 /* UIView+constraints.swift */,
+				61660B8D20E7DF4600FA0B21 /* MainViewController.swift */,
 			);
-			path = Controllers;
+			path = MainViewController;
 			sourceTree = "<group>";
 		};
-		295AB2B721E6EF2F00C0D56C /* Chart */ = {
+		295AB2B721E6EF2F00C0D56C /* ChartView */ = {
 			isa = PBXGroup;
 			children = (
 				B5F9203820E76BE2009E07AC /* ChartViewController.swift */,
 			);
-			path = Chart;
+			path = ChartView;
 			sourceTree = "<group>";
 		};
-		295AB2B821E6EF4200C0D56C /* MainVewController */ = {
-			isa = PBXGroup;
-			children = (
-				61660B8D20E7DF4600FA0B21 /* MainViewController.swift */,
-			);
-			path = MainVewController;
-			sourceTree = "<group>";
-		};
-		295AB2B921E6FE7F00C0D56C /* Stylesheet */ = {
-			isa = PBXGroup;
-			children = (
-				61660B8F20E7E01B00FA0B21 /* UIView+constraints.swift */,
-			);
-			path = Stylesheet;
-			sourceTree = "<group>";
-		};
-		29ABCE6A21E6976F000BA439 /* Authentication */ = {
+		29ABCE6A21E6976F000BA439 /* AuthenticationView */ = {
 			isa = PBXGroup;
 			children = (
 				6125D3BB20D63E7600D99293 /* LoginViewController.swift */,
 				6125D3BD20D63E7900D99293 /* SignUpViewController.swift */,
 				6125D3BC20D63E7800D99293 /* ResetPasswordViewController.swift */,
 			);
-			path = Authentication;
+			path = AuthenticationView;
 			sourceTree = "<group>";
 		};
-		29ABCE6B21E69777000BA439 /* Wallet */ = {
+		29ABCE6B21E69777000BA439 /* WalletView */ = {
 			isa = PBXGroup;
 			children = (
-				6144D35A20DCE21A00EA90F7 /* InitialWalletViewController.swift */,
-				B5771F5420DC0E6D009A9605 /* CategoryViewController.swift */,
-				B5137DEA20D6AA4B007D5B5C /* AddTransactionViewController.swift */,
-				B59C3BE820CD246100BFCC04 /* TransactionTableViewController.swift */,
+				29FCBAD821E7466A00AB34D1 /* WalletViewModel */,
+				29ABCE7721E69DC8000BA439 /* WalletViewCell */,
+				29FCBAD721E7465900AB34D1 /* WalletViewController */,
 			);
-			path = Wallet;
+			path = WalletView;
 			sourceTree = "<group>";
 		};
 		29ABCE6E21E69802000BA439 /* Entities */ = {
@@ -214,13 +198,32 @@
 			path = WalletBusiness;
 			sourceTree = "<group>";
 		};
-		29ABCE7721E69DC8000BA439 /* ViewCell */ = {
+		29ABCE7721E69DC8000BA439 /* WalletViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				B5F9897620E53531003DA814 /* AllCategoryTableViewCell.swift */,
 				B59C3BE320CD184900BFCC04 /* TransactionTableViewCell.swift */,
 			);
-			path = ViewCell;
+			path = WalletViewCell;
+			sourceTree = "<group>";
+		};
+		29FCBAD721E7465900AB34D1 /* WalletViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6144D35A20DCE21A00EA90F7 /* InitialWalletViewController.swift */,
+				B5771F5420DC0E6D009A9605 /* CategoryViewController.swift */,
+				B5137DEA20D6AA4B007D5B5C /* AddTransactionViewController.swift */,
+				B59C3BE820CD246100BFCC04 /* TransactionTableViewController.swift */,
+			);
+			path = WalletViewController;
+			sourceTree = "<group>";
+		};
+		29FCBAD821E7466A00AB34D1 /* WalletViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				29FCBAD521E7422800AB34D1 /* TransactionViewModel.swift */,
+			);
+			path = WalletViewModel;
 			sourceTree = "<group>";
 		};
 		29FFB37821DDE755003A0376 /* Utilities */ = {
@@ -440,6 +443,7 @@
 				6144D35B20DCE21A00EA90F7 /* InitialWalletViewController.swift in Sources */,
 				B5771F5520DC0E6D009A9605 /* CategoryViewController.swift in Sources */,
 				B5137DEB20D6AA4B007D5B5C /* AddTransactionViewController.swift in Sources */,
+				29FCBAD621E7422800AB34D1 /* TransactionViewModel.swift in Sources */,
 				29ABCE6D21E697E1000BA439 /* DatabaseAdapter.swift in Sources */,
 				B59C3BE920CD246100BFCC04 /* TransactionTableViewController.swift in Sources */,
 				B59C3BE720CD1D4E00BFCC04 /* Transaction.swift in Sources */,
